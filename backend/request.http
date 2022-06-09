@@ -1,0 +1,111 @@
+@api = http://127.0.0.1:5000/api
+
+POST {{api}}/get_user/
+Content-Type: application/json
+
+{
+}
+
+###
+
+
+POST {{api}}/get_rol/
+Content-Type: application/json
+
+{
+}
+
+###
+
+
+POST {{api}}/get_request/
+Content-Type: application/json
+
+{
+}
+
+###
+
+
+POST {{api}}/get_project/
+Content-Type: application/json
+
+{
+}
+
+###
+
+
+POST {{api}}/get_member/
+Content-Type: application/json
+
+{
+}
+
+###
+
+POST {{api}}/get_measurement_unit/
+Content-Type: application/json
+
+{
+}
+
+###
+
+POST {{api}}/get_type/
+Content-Type: application/json
+
+{
+}
+
+###
+
+POST {{api}}/get_request_reagent/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_lab_equipment/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_brand/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_provider/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_status/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_maintenance/
+Content-Type: application/json
+
+{
+}
+
+###
+POST {{api}}/get_request_equipment/
+Content-Type: application/json
+
+{
+}
+
+###
