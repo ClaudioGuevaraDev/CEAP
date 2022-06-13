@@ -6,6 +6,7 @@
 
   // Screens
   import Home from "./screens/Home.svelte";
+  import Dashboard from "./screens/Dashboard.svelte";
 
   //Components
   import Navbar from "./components/Navbar.svelte";
@@ -13,9 +14,11 @@
 
 <Router>
   <main class="wrapper border border-primary">
-    <Navbar/>
+    <Navbar />
 
     <Route path="/" component={Home} />
+    <Route path="/dashboard" component={Dashboard
+    } />
   </main>
 </Router>
 
