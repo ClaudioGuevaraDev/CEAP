@@ -21,7 +21,7 @@
       ? "iniciar sesión"
       : "registrarte"}
   </p>
-  <div class="card form-container">
+  <div class="card form-container shadow bg-body rounded">
     <div class="card-body">
       {#if authSection === false}
         <div class="mb-3">
@@ -74,15 +74,15 @@
           >
         </p>
       </div>
-      <div class="mb-3">
+      <div>
         <button
           class="btn btn-success w-100"
           on:click={() => navigate("/dashboard")}
         >
           {#if authSection}
-            Iniciar Sesión
+            INICIAR SESIÓN
           {:else}
-            Registrarte
+            REGISTRARSE
           {/if}
         </button>
       </div>

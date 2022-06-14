@@ -33,7 +33,6 @@
   >
     Reactivos
   </li>
-  <hr class="solid" />
   <li class="logout-item text-danger mt-4" on:click={logout}>Cerrar Sesión</li>
 </ul>
 

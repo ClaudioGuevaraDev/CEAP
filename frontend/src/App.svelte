@@ -10,6 +10,18 @@
 </script>
 
 <Router>
-  <Route path="/" component={Home} />
+  <main class="wrapper">
+    <Route path="/" component={Home} />
   <Route path="/dashboard" component={Dashboard} />
+  </main>
 </Router>
+
+<style>
+  .wrapper {
+    height: 100%;
+    min-height: 100vh;
+    background-image: url("/src/assets/fondo1.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+</style>
