@@ -15,7 +15,7 @@
   <div class="columns col-md-3 overflow-auto">
     <Sidebar {section} {handleSection} />
   </div>
-  <div class="columns col-md-9 overflow-auto p-4">
+  <div class="columns dashboard col-md-9 overflow-auto p-4">
     {#if section === "usuarios"}
       <Usuarios />
     {/if}
@@ -31,5 +31,9 @@
 <style>
   .columns {
     max-height: 100vh;
+  }
+
+  .dashboard {
+    margin-top: 1rem;
   }
 </style>

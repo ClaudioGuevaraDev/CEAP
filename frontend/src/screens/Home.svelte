@@ -25,7 +25,9 @@
     <div class="card-body">
       {#if authSection === false}
         <div class="mb-3">
-          <label for="fullname-input">Nombre y Apellido</label>
+          <label for="fullname-input" class="form-label"
+            >Nombre y Apellido</label
+          >
           <input
             type="text"
             id="fullname-input"
@@ -35,7 +37,7 @@
         </div>
       {/if}
       <div class="mb-3">
-        <label for="email-input">Correo Electrónico</label>
+        <label for="email-input" class="form-label">Correo Electrónico</label>
         <input
           type="email"
           id="email-input"
@@ -44,7 +46,7 @@
         />
       </div>
       <div class="mb-3">
-        <label for="password-input">Contraseña</label>
+        <label for="password-input" class="form-label">Contraseña</label>
         <input
           type="password"
           id="password-input"
@@ -54,13 +56,21 @@
       </div>
       {#if authSection === false}
         <div class="mb-3">
-          <label for="confirm-password-input">Confimar Contraseña</label>
+          <label for="confirm-password-input" class="form-label"
+            >Confimar Contraseña</label
+          >
           <input
             type="password"
             id="confirm-password-input"
             placeholder="********"
             class="form-control"
           />
+        </div>
+      {/if}
+      {#if authSection === false}
+        <div class="mb-3">
+          <label for="file-input" class="form-label">Foto de Perfil</label>
+          <input type="file" class="form-control" id="file-input" />
         </div>
       {/if}
       <div class="mb-3">
@@ -91,10 +101,6 @@
 </div>
 
 <style>
-  .form-container {
-    width: 30rem;
-  }
-
   .consult:hover {
     cursor: pointer;
     text-decoration: underline;
