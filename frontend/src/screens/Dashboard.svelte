@@ -9,75 +9,10 @@
 </script>
 
 <div class="d-flex">
-  <div class="columns col-md-2 overflow-auto">
+  <div class="columns col-md-3 overflow-auto">
     <Sidebar {section} {handleSection} />
   </div>
-  <div class="columns col-md-10 overflow-auto">
-    <h1>{section}</h1>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
-    <p>asdkalsñd</p>
+  <div class="columns col-md-9 overflow-auto">
   </div>
 </div>
 
@@ -85,4 +20,5 @@
   .columns {
     max-height: 100vh;
   }
+
 </style>

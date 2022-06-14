@@ -17,11 +17,9 @@
     >Bievenido al sistema de adminsitración del CEAP
   </span>
   <p class="mb-4 fs-4">
-    <em
-      >Ingresa tus credenciales para {authSection
-        ? "iniciar sesión"
-        : "registrarte"}</em
-    >
+    Ingresa tus credenciales para {authSection
+      ? "iniciar sesión"
+      : "registrarte"}
   </p>
   <div class="card form-container">
     <div class="card-body">
@@ -67,11 +65,13 @@
       {/if}
       <div class="mb-3">
         <p class="consult text-center" on:click={handleAuthSection}>
-          {#if authSection}
-            ¿No tienes una cuenta creada?
-          {:else}
-            ¿Ya tienes una cuenta registrada?
-          {/if}
+          <em
+            >{#if authSection}
+              ¿No tienes una cuenta creada?
+            {:else}
+              ¿Ya tienes una cuenta registrada?
+            {/if}</em
+          >
         </p>
       </div>
       <div class="mb-3">

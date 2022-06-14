@@ -7,14 +7,9 @@
   // Screens
   import Home from "./screens/Home.svelte";
   import Dashboard from "./screens/Dashboard.svelte";
-
-  //Components
-  import Navbar from "./components/Navbar.svelte";
 </script>
 
-<Router>  
-  <main class="wrapper">
-    <Route path="/" component={Home} />
-    <Route path="/dashboard" component={Dashboard} />
-  </main>
+<Router>
+  <Route path="/" component={Home} />
+  <Route path="/dashboard" component={Dashboard} />
 </Router>
