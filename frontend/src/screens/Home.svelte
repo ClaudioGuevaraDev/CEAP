@@ -5,13 +5,13 @@
 
   let authSection = true; // true = login false = register
 
-  function handleSection() {
+  function handleAuthSection() {
     authSection = !authSection;
   }
 </script>
 
 <div
-  class="container p-4 d-flex justify-content-center align-items-center flex-column"
+  class="container p-4 d-flex justify-content-start align-items-center flex-column"
 >
   <span class="h2 text-center text-success"
     >Bievenido al sistema de adminsitración del CEAP
@@ -66,7 +66,7 @@
         </div>
       {/if}
       <div class="mb-3">
-        <p class="consult text-center" on:click={handleSection}>
+        <p class="consult text-center" on:click={handleAuthSection}>
           {#if authSection}
             ¿No tienes una cuenta creada?
           {:else}

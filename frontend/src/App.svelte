@@ -12,20 +12,9 @@
   import Navbar from "./components/Navbar.svelte";
 </script>
 
-<Router>
-  <main class="wrapper border border-primary">
-    <Navbar />
-
+<Router>  
+  <main class="wrapper">
     <Route path="/" component={Home} />
-    <Route path="/dashboard" component={Dashboard
-    } />
+    <Route path="/dashboard" component={Dashboard} />
   </main>
 </Router>
-
-<style>
-  .wrapper {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-  }
-</style>
