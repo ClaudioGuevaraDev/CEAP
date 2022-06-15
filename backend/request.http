@@ -1,6 +1,16 @@
 @api = http://127.0.0.1:5000/api
 
-POST {{api}}/get_user/
+POST {{api}}/user/get/
+Content-Type: application/json
+
+{
+    "id": 1
+}
+
+###
+
+
+POST {{api}}/rol/get/
 Content-Type: application/json
 
 {
@@ -9,7 +19,7 @@ Content-Type: application/json
 ###
 
 
-POST {{api}}/get_rol/
+POST {{api}}/request/get/
 Content-Type: application/json
 
 {
@@ -18,7 +28,7 @@ Content-Type: application/json
 ###
 
 
-POST {{api}}/get_request/
+POST {{api}}/project/get/
 Content-Type: application/json
 
 {
@@ -27,7 +37,7 @@ Content-Type: application/json
 ###
 
 
-POST {{api}}/get_project/
+POST {{api}}/member/get/
 Content-Type: application/json
 
 {
@@ -35,8 +45,7 @@ Content-Type: application/json
 
 ###
 
-
-POST {{api}}/get_member/
+POST {{api}}/measurement_unit/get/
 Content-Type: application/json
 
 {
@@ -44,7 +53,7 @@ Content-Type: application/json
 
 ###
 
-POST {{api}}/get_measurement_unit/
+POST {{api}}/type/get/
 Content-Type: application/json
 
 {
@@ -52,57 +61,49 @@ Content-Type: application/json
 
 ###
 
-POST {{api}}/get_type/
+POST {{api}}/request_reagent/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-
-POST {{api}}/get_request_reagent/
+POST {{api}}/lab_equipment/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-POST {{api}}/get_lab_equipment/
+POST {{api}}/brand/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-POST {{api}}/get_brand/
+POST {{api}}/provider/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-POST {{api}}/get_provider/
+POST {{api}}/status/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-POST {{api}}/get_status/
+POST {{api}}/maintenance/get/
 Content-Type: application/json
 
 {
 }
 
 ###
-POST {{api}}/get_maintenance/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/get_request_equipment/
+POST {{api}}/request_equipment/get/
 Content-Type: application/json
 
 {

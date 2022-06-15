@@ -1,0 +1,34 @@
+from flask import Blueprint
+from modules.routes.user import user_blueprint
+from modules.routes.rol import rol_blueprint
+from modules.routes.request import request_blueprint
+from modules.routes.project import project_blueprint
+from modules.routes.member import member_blueprint
+from modules.routes.lab_reagent import lab_reagent_blueprint
+from modules.routes.measurement_unit import measurement_unit_blueprint
+from modules.routes.type import type_blueprint
+from modules.routes.request_reagent import request_reagent_blueprint
+from modules.routes.lab_equipment import lab_equipment_blueprint
+from modules.routes.brand import brand_blueprint
+from modules.routes.provider import provider_blueprint
+from modules.routes.status import status_blueprint
+from modules.routes.request_equipment import request_equipment_blueprint
+from modules.routes.maintenance import maintenance_blueprint
+
+api_blueprint = Blueprint('api', __name__)
+
+api_blueprint.register_blueprint(user_blueprint)
+api_blueprint.register_blueprint(rol_blueprint)
+api_blueprint.register_blueprint(request_blueprint)
+api_blueprint.register_blueprint(project_blueprint)
+api_blueprint.register_blueprint(member_blueprint)
+api_blueprint.register_blueprint(lab_reagent_blueprint)
+api_blueprint.register_blueprint(measurement_unit_blueprint)
+api_blueprint.register_blueprint(type_blueprint)
+api_blueprint.register_blueprint(request_reagent_blueprint)
+api_blueprint.register_blueprint(lab_equipment_blueprint)
+api_blueprint.register_blueprint(brand_blueprint)
+api_blueprint.register_blueprint(provider_blueprint)
+api_blueprint.register_blueprint(status_blueprint)
+api_blueprint.register_blueprint(request_equipment_blueprint)
+api_blueprint.register_blueprint(maintenance_blueprint)
