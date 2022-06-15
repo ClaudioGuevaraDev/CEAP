@@ -16,5 +16,9 @@ def get_status():
     return parser.get(request)
 
 @status_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_status():
     return parser.insert(request)
+    
+@status_blueprint.route('/update/', methods=["POST"])
+def update_status():
+    return parser.update(request)

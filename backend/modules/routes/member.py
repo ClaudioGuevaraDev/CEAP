@@ -15,5 +15,9 @@ def get_member():
     return parser.get(request)
 
 @member_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_member():
     return parser.insert(request)
+    
+@member_blueprint.route('/update/', methods=["POST"])
+def update_member():
+    return parser.update(request)

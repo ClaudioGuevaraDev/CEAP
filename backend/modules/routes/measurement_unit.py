@@ -17,5 +17,9 @@ def get_measurement_unit():
     return parser.get(request)
 
 @measurement_unit_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_measurement_unit():
     return parser.insert(request)
+    
+@measurement_unit_blueprint.route('/update/', methods=["POST"])
+def update_measurement_unit():
+    return parser.update(request)

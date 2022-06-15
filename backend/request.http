@@ -115,8 +115,21 @@ POST {{api}}/brand/insert/
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": 3,
     "name": "fdsafads"
+}
+
+###
+POST {{api}}/brand/update/
+Content-Type: application/json
+
+{
+    "query":{
+        "id": 3
+    },
+    "values":{
+        "name": "xd2"
+    }
 }
 
 ###

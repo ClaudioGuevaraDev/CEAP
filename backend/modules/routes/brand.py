@@ -16,6 +16,9 @@ def get_brand():
     return parser.get(request)
 
 @brand_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_brand():
     return parser.insert(request)
 
+@brand_blueprint.route('/update/', methods=["POST"])
+def update_brand():
+    return parser.update(request)

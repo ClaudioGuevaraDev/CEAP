@@ -15,5 +15,9 @@ def get_maintenance():
     return parser.get(request)
 
 @maintenance_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_maintenance():
     return parser.insert(request)
+    
+@maintenance_blueprint.route('/update/', methods=["POST"])
+def update_maintenance():
+    return parser.update(request)

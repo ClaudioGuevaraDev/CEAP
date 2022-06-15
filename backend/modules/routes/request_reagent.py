@@ -16,5 +16,9 @@ def get_request_reagent():
     return parser.get(request)
 
 @request_reagent_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_request_reagent():
     return parser.insert(request)
+    
+@request_reagent_blueprint.route('/update/', methods=["POST"])
+def update_request_reagent():
+    return parser.update(request)

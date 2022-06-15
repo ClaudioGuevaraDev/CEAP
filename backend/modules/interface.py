@@ -6,16 +6,27 @@ class interface:
         
     def get(self, request):
         data = request.json
-        res = self.db.getter(data, self.model)
-        if len(res) != 0:
-            return make_response(jsonify({"results": res}), 200)
+        res = self.db.get_(data, self.model)
+        if type(res) == list:
+            if len(res) != 0:
+                return make_response({"results": res}, 200)
+            else:
+                return make_response({}, 404)
         else:
-            return make_response({}, 404)
+            return make_response({"description": res}, 500)
             
     def insert(self, request):
         data = request.json
-        res = self.db.insert(data, self.model)
+        res = self.db.insert_(data, self.model)
         if res == True:
             return make_response({}, 201)
+        else:
+            return make_response({"description": res}, 500)
+
+    def update(self, request):
+        data = request.json
+        res = self.db.update_(data["query"], data["values"], self.model)
+        if res == True:
+            return make_response({}, 200)
         else:
             return make_response({"description": res}, 500)

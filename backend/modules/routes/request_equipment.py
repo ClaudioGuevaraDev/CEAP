@@ -15,5 +15,9 @@ def get_request_equipment():
     return parser.get(request)
 
 @request_equipment_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_request_equipment():
     return parser.insert(request)
+    
+@request_equipment_blueprint.route('/update/', methods=["POST"])
+def update_request_equipment():
+    return parser.update(request)

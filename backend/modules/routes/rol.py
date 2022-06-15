@@ -15,5 +15,9 @@ def get_rol():
     return parser.get(request)
 
 @rol_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_rol():
     return parser.insert(request)
+
+@rol_blueprint.route('/update/', methods=["POST"])
+def update_rol():
+    return parser.update(request)

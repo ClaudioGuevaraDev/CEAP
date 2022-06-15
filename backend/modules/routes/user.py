@@ -13,6 +13,11 @@ parser = interface(tablename, db)
 @user_blueprint.route('/get/', methods=['POST'])
 def get_user():
     return parser.get(request)
+
 @user_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_user():
     return parser.insert(request)
+
+@user_blueprint.route('/update/', methods=["POST"])
+def update_user():
+    return parser.update(request)

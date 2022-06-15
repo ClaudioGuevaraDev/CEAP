@@ -18,3 +18,7 @@ def get_lab_equipment():
 @lab_equipment_blueprint.route('/insert/', methods=["POST"])
 def insert_type():
     return parser.insert(request)
+
+@lab_equipment_blueprint.route('/update/', methods=["POST"])
+def update_type():
+    return parser.update(request)

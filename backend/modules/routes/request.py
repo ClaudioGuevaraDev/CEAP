@@ -15,5 +15,9 @@ def get_request():
     return parser.get(request)
 
 @request_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_request():
     return parser.insert(request)
+    
+@request_blueprint.route('/update/', methods=["POST"])
+def update_request():
+    return parser.update(request)
