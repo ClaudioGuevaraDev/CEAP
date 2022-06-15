@@ -21,3 +21,7 @@ def insert_request():
 @request_blueprint.route('/update/', methods=["POST"])
 def update_request():
     return parser.update(request)
+
+@request_blueprint.route('/delete/', methods=["POST"])
+def delete_request():
+    return parser.delete(request)

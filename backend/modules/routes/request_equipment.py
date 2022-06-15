@@ -21,3 +21,7 @@ def insert_request_equipment():
 @request_equipment_blueprint.route('/update/', methods=["POST"])
 def update_request_equipment():
     return parser.update(request)
+
+@request_equipment_blueprint.route('/delete/', methods=["POST"])
+def delete_request_equipment():
+    return parser.delete(request)

@@ -21,3 +21,7 @@ def insert_user():
 @user_blueprint.route('/update/', methods=["POST"])
 def update_user():
     return parser.update(request)
+
+@user_blueprint.route('/delete/', methods=["POST"])
+def delete_user():
+    return parser.delete(request)

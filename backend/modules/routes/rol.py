@@ -21,3 +21,7 @@ def insert_rol():
 @rol_blueprint.route('/update/', methods=["POST"])
 def update_rol():
     return parser.update(request)
+
+@rol_blueprint.route('/delete/', methods=["POST"])
+def delete_rol():
+    return parser.delete(request)

@@ -21,3 +21,7 @@ def insert_maintenance():
 @maintenance_blueprint.route('/update/', methods=["POST"])
 def update_maintenance():
     return parser.update(request)
+
+@maintenance_blueprint.route('/delete/', methods=["POST"])
+def delete_maintenance():
+    return parser.delete(request)

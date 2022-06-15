@@ -22,3 +22,7 @@ def insert_status():
 @status_blueprint.route('/update/', methods=["POST"])
 def update_status():
     return parser.update(request)
+
+@status_blueprint.route('/delete/', methods=["POST"])
+def delete_status():
+    return parser.delete(request)

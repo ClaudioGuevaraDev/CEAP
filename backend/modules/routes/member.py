@@ -21,3 +21,7 @@ def insert_member():
 @member_blueprint.route('/update/', methods=["POST"])
 def update_member():
     return parser.update(request)
+
+@member_blueprint.route('/delete/', methods=["POST"])
+def delete_member():
+    return parser.delete(request)

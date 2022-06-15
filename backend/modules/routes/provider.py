@@ -22,3 +22,7 @@ def insert_provider():
 @provider_blueprint.route('/update/', methods=["POST"])
 def update_provider():
     return parser.update(request)
+
+@provider_blueprint.route('/delete/', methods=["POST"])
+def delete_provider():
+    return parser.delete(request)

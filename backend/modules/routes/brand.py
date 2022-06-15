@@ -22,3 +22,7 @@ def insert_brand():
 @brand_blueprint.route('/update/', methods=["POST"])
 def update_brand():
     return parser.update(request)
+
+@brand_blueprint.route('/delete/', methods=["POST"])
+def delete_brand():
+    return parser.delete(request)

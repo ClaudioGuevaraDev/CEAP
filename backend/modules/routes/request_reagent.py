@@ -22,3 +22,7 @@ def insert_request_reagent():
 @request_reagent_blueprint.route('/update/', methods=["POST"])
 def update_request_reagent():
     return parser.update(request)
+
+@request_reagent_blueprint.route('/delete/', methods=["POST"])
+def delete_request_reagent():
+    return parser.delete(request)

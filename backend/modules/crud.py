@@ -1,4 +1,4 @@
-from sqlalchemy import select, insert, update
+from sqlalchemy import select, insert, update, delete
 import pandas as pd
 import json
 from modules.models import *
@@ -38,6 +38,19 @@ class Crud:
                 if query[key] != None:
                     stmt = stmt.where(eval("{}.{} == {}".format(Model, key, query[key])))
             stmt = stmt.values(**replace)
+            self.session.execute(stmt)
+            self.session.commit()
+            return True
+        except Exception as e:
+            return str(e)
+    
+    def delete_(self, data, Model):
+        try:
+            stmt = delete(eval(Model))
+            keys = data.keys()
+            for key in keys:
+                if data[key] != None:
+                    stmt = stmt.where(eval("{}.{} == {}".format(Model, key, data[key])))
             self.session.execute(stmt)
             self.session.commit()
             return True
