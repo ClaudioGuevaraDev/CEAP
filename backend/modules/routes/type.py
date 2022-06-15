@@ -19,3 +19,7 @@ def insert_type():
 @type_blueprint.route('/update/', methods=["POST"])
 def update_type():
     return parser.update(request)
+
+@type_blueprint.route('/delete/', methods=["POST"])
+def delete_type():
+    return parser.delete(request)

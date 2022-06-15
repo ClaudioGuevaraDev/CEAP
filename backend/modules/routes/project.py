@@ -21,3 +21,7 @@ def insert_project():
 @project_blueprint.route('/update/', methods=["POST"])
 def update_project():
     return parser.update(request)
+    
+@project_blueprint.route('/delete/', methods=["POST"])
+def delete_project():
+    return parser.delete(request)

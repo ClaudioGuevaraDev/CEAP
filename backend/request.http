@@ -111,12 +111,11 @@ Content-Type: application/json
 }
 
 ###
-POST {{api}}/brand/insert/
+POST {{api}}/brand/delete/
 Content-Type: application/json
 
 {
-    "id": 3,
-    "name": "fdsafads"
+    "id": 1
 }
 
 ###

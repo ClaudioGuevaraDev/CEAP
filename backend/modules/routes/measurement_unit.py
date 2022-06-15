@@ -23,3 +23,7 @@ def insert_measurement_unit():
 @measurement_unit_blueprint.route('/update/', methods=["POST"])
 def update_measurement_unit():
     return parser.update(request)
+
+@measurement_unit_blueprint.route('/delete/', methods=["POST"])
+def delete_measurement_unit():
+    return parser.delete(request)

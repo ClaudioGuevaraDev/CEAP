@@ -22,3 +22,7 @@ def insert_type():
 @lab_equipment_blueprint.route('/update/', methods=["POST"])
 def update_type():
     return parser.update(request)
+
+@lab_equipment_blueprint.route('/delete/', methods=["POST"])
+def delete_type():
+    return parser.delete(request)
