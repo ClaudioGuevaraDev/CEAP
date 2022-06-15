@@ -1,5 +1,5 @@
 user = "user"
 password = "password"
-host = "localhost"
+host = "database"
 db = "ceap"
 port = "5431"

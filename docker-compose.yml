@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: backend
+    restart: always
+    build: ./backend
+    ports:
+      - "5000:5000"
+    links:
+      - database
+  database:
+    container_name: db
+    restart: always
+    build: ./db
+    ports:
+      - "5432:5432"
