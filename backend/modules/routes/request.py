@@ -1,13 +1,19 @@
-from flask import request, jsonify, make_response, Blueprint
+from flask import request, Blueprint
 from modules.database import Database
 import config
+from modules.interface import interface
 
 request_blueprint = Blueprint('request', __name__, url_prefix='/request')
 
 db = Database(config)
 
+tablename = "Request"
+parser = interface(tablename, db)
+
 @request_blueprint.route('/get/', methods=['POST'])
 def get_request():
-    data = request.json
-    res = db.get_request(data)
-    return make_response(jsonify({"state": "success", "results": res}), 200)
+    return parser.get(request)
+
+@request_blueprint.route('/insert/', methods=["POST"])
+def insert_type():
+    return parser.insert(request)

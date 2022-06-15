@@ -1,13 +1,19 @@
-from flask import request, jsonify, make_response, Blueprint
+from flask import request, Blueprint
 from modules.database import Database
 import config
+from modules.interface import interface
 
 rol_blueprint = Blueprint('rol', __name__, url_prefix='/rol')
 
 db = Database(config)
 
+tablename = "Rol"
+parser = interface(tablename, db)
+
 @rol_blueprint.route('/get/', methods=['POST'])
 def get_rol():
-    data = request.json
-    res = db.get_rol(data)
-    return make_response(jsonify({"state": "success", "results": res}), 200)
+    return parser.get(request)
+
+@rol_blueprint.route('/insert/', methods=["POST"])
+def insert_type():
+    return parser.insert(request)

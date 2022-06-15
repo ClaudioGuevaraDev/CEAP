@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 from modules.crud import Crud
 class Database(Crud):
     def __init__(self, config):
@@ -10,5 +11,6 @@ class Database(Crud):
         uri = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(user, password, host, port, db)
         self.engine = create_engine(uri)
         self.con = self.engine.connect()
-        super().__init__(self.con)
+        self.session = Session(self.engine, future=True)
+        super().__init__(self.con, self.engine, self.session)
         

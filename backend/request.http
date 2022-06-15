@@ -57,6 +57,7 @@ POST {{api}}/type/get/
 Content-Type: application/json
 
 {
+    "id": 1
 }
 
 ###
@@ -107,6 +108,15 @@ POST {{api}}/request_equipment/get/
 Content-Type: application/json
 
 {
+}
+
+###
+POST {{api}}/brand/insert/
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "fdsafads"
 }
 
 ###
