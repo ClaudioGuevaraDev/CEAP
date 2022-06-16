@@ -1,59 +1,33 @@
 @api = http://127.0.0.1:5000/api
 
-POST {{api}}/user/get/
-Content-Type: application/json
-
-{
-    "id": 1
-}
-
 ###
-
-
 POST {{api}}/rol/get/
 Content-Type: application/json
 
 {
 }
 
+
 ###
-
-
-POST {{api}}/request/get/
+POST {{api}}/rol/insert/
 Content-Type: application/json
 
 {
+    "id": 1,
+    "name": "usuario"
 }
 
 ###
-
-
-POST {{api}}/project/get/
+POST {{api}}/rol/get/
 Content-Type: application/json
 
 {
+    "id": 1
 }
 
-###
-
-
-POST {{api}}/member/get/
-Content-Type: application/json
-
-{
-}
 
 ###
-
-POST {{api}}/measurement_unit/get/
-Content-Type: application/json
-
-{
-}
-
-###
-
-POST {{api}}/type/get/
+POST {{api}}/rol/delete/
 Content-Type: application/json
 
 {
@@ -61,73 +35,15 @@ Content-Type: application/json
 }
 
 ###
-
-POST {{api}}/request_reagent/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/lab_equipment/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/brand/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/provider/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/status/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/maintenance/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/request_equipment/get/
-Content-Type: application/json
-
-{
-}
-
-###
-POST {{api}}/brand/delete/
-Content-Type: application/json
-
-{
-    "id": 1
-}
-
-###
-POST {{api}}/brand/update/
+POST {{api}}/rol/update/
 Content-Type: application/json
 
 {
     "query":{
-        "id": 3
+        "id": 1
     },
     "values":{
-        "name": "xd2"
+        "name": "xd"
     }
 }
 
