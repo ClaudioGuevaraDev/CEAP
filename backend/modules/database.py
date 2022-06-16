@@ -1,14 +1,17 @@
+"""Database module"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from modules.crud import Crud
 class Database(Crud):
+    """Database class for db administration
+    Crud herency (basic functions)"""
     def __init__(self, config):
-        user = config.user
-        password = config.password
-        host = config.host
-        port = config.port
-        db = config.db
-        uri = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(user, password, host, port, db)
+        user = config.USER
+        password = config.PASSWORD
+        host = config.HOST
+        port = config.PORT
+        db_name = config.DB_NAME
+        uri = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db_name}"
         self.engine = create_engine(uri)
         self.con = self.engine.connect()
         self.session = Session(self.engine, future=True)

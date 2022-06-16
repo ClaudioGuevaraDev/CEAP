@@ -1,28 +1,32 @@
-
+"""Lab equipment url functions"""
 from flask import request, Blueprint
 from modules.database import Database
+from modules.interface import Interface
+from modules.models import LabEquipment
 import config
-from modules.interface import interface
 
 lab_equipment_blueprint = Blueprint('lab_equipment', __name__, url_prefix='/lab_equipment')
 
 db = Database(config)
 
-tablename = "Lab_equipment"
-parser = interface(tablename, db)
+parser = Interface(LabEquipment, db)
 
 @lab_equipment_blueprint.route('/get/', methods=['POST'])
 def get_lab_equipment():
+    """calls to interface get function"""
     return parser.get(request)
 
 @lab_equipment_blueprint.route('/insert/', methods=["POST"])
-def insert_type():
+def insert_lab_equipment():
+    """calls to interface insert function"""
     return parser.insert(request)
 
 @lab_equipment_blueprint.route('/update/', methods=["POST"])
-def update_type():
+def update_lab_equipment():
+    """calls to interface update function"""
     return parser.update(request)
 
 @lab_equipment_blueprint.route('/delete/', methods=["POST"])
-def delete_type():
+def delete_lab_equipment():
+    """calls to interface delete function"""
     return parser.delete(request)

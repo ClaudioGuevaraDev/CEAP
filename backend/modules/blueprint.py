@@ -1,3 +1,4 @@
+"""Blueprint"""
 from flask import Blueprint
 from modules.routes.user import user_blueprint
 from modules.routes.rol import rol_blueprint

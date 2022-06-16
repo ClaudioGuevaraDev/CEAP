@@ -13,7 +13,7 @@ POST {{api}}/rol/insert/
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": 15,
     "name": "usuario"
 }
 
@@ -22,7 +22,7 @@ POST {{api}}/rol/get/
 Content-Type: application/json
 
 {
-    "id": 1
+    "id": 15
 }
 
 
@@ -31,7 +31,7 @@ POST {{api}}/rol/delete/
 Content-Type: application/json
 
 {
-    "id": 1
+    "id": 15
 }
 
 ###
