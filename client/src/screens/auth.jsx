@@ -10,11 +10,10 @@ import {
 import useAuthSection from "../hooks/auth/useAuthSection";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 export default function AuthScreen() {
   const { authSection, handleAuthSection } = useAuthSection();
-  const theme = useTheme();
 
   return (
     <Grid
@@ -31,12 +30,10 @@ export default function AuthScreen() {
         <Paper
           sx={{
             p: 3,
-            borderRadius: 0
+            borderRadius: 1,
           }}
         >
-          <Avatar
-            sx={{ marginX: "auto", bgcolor: "secondary.main" }}
-          >
+          <Avatar sx={{ marginX: "auto", bgcolor: "secondary.main" }}>
             {authSection === "login" ? (
               <LockOutlinedIcon />
             ) : (
@@ -113,16 +110,17 @@ export default function AuthScreen() {
               )}
             </Typography>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              sx={{ mt: 2 }}
-              color="success"
-            >
-              {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
-            </Button>
+            <Link to="/dashboard">
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                sx={{ mt: 2 }}
+                color="success"
+              >
+                {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
+              </Button>
+            </Link>
           </Box>
         </Paper>
       </Grid>
