@@ -15,8 +15,13 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { drawerWidth } from "./utils";
 import { useTheme } from "@mui/material/styles";
+import SidebarComponent from "./Sidebar";
 
-export default function DrawerComponent({ open, handleDrawerClose }) {
+export default function DrawerComponent({
+  open,
+  handleDrawerClose,
+  handleSection,
+}) {
   const theme = useTheme();
 
   return (
@@ -43,31 +48,7 @@ export default function DrawerComponent({ open, handleDrawerClose }) {
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <SidebarComponent handleSection={handleSection} />
     </Drawer>
   );
 }

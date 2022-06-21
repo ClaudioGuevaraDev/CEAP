@@ -3,9 +3,11 @@ import DrawerComponent from "../components/Dashboard/Drawer";
 import NavbarComponent from "../components/Dashboard/Navbar";
 import MainComponent from "../components/Dashboard/MainComponent";
 import useHandleDrawer from "../hooks/dashboard/useHandleDrawer";
+import useHandleSection from "../hooks/dashboard/useHandleSection";
 
 export default function DashboardScreen() {
   const { openDrawer, handleDrawerClose, handleDrawerOpen } = useHandleDrawer();
+  const { section, handleSection } = useHandleSection();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -13,8 +15,9 @@ export default function DashboardScreen() {
       <DrawerComponent
         open={openDrawer}
         handleDrawerClose={handleDrawerClose}
+        handleSection={handleSection}
       />
-      <MainComponent open={openDrawer} />
+      <MainComponent open={openDrawer} section={section} />
     </Box>
   );
 }
