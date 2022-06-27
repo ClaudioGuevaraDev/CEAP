@@ -9,7 +9,7 @@ class Crud:
         self.con = con
         self.engine = engine
         self.session = session
-
+        
     def get_(self, data, model):
         """Get table data using data paramenters
         Returns all data if there aren't parameters"""
@@ -29,7 +29,7 @@ class Crud:
             stmt = (insert(model).values(data))
             self.session.execute(stmt)
             self.session.commit()
-            return True
+            return self.get_(data, model)[-1]
         except Exception as exception:
             return str(exception)
 
@@ -43,20 +43,21 @@ class Crud:
             stmt = stmt.values(**replace)
             self.session.execute(stmt)
             self.session.commit()
-            return True
+            return self.get_(replace, model)[-1]
         except Exception as exception:
             return str(exception)
 
     def delete_(self, data, model):
         """Delete rows by condition"""
         try:
+            selected = self.get_(data, model)[-1]
             stmt = delete(model)
             keys = data.keys()
             for key in keys:
                 stmt = stmt.where(getattr(model, key) == data[key])
             self.session.execute(stmt)
             self.session.commit()
-            return True
+            return selected
         except Exception as exception:
             return str(exception)
             
