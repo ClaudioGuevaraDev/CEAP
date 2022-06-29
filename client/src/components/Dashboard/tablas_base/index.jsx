@@ -87,7 +87,7 @@ export default function TablaBaseLayout({
         </form>
       </FormContainer>
       {dataTable.length > 0 && (
-        <Grid item xl={3}>
+        <Grid item xl={5} lg={8} md={10} sm={12} xs={12}>
           <Box sx={{ boxShadow: 7, width: "100%" }}>
             <MUIDataTable
               title={tableTitle}
