@@ -7,6 +7,7 @@ export default function TipoUsuarioSection() {
       placeholder="Ej: Administrador"
       api="rol"
       tableTitle="Lista de Tipos de Usuarios"
+      errorMessage="el tipo de usuario"
     />
   );
 }
