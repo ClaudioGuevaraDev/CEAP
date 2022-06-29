@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TablaBaseLayout from "../tablas_base";
 
 const columns = [
   {
@@ -167,30 +168,31 @@ export default function TipoUsuarioSection() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <SectionTitle title="Tipo de Usuario" />
-      <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <TextFieldComponent
-            label="Nombre"
-            placeholder="Ej: Administrador"
-            autoFocus={true}
-            value={roleName}
-            setValue={setRoleName}
-          />
-          <ButtonComponent update={update} />
-        </form>
-      </FormContainer>
-      <Grid item xl={3}>
-        <Box sx={{ boxShadow: 7, width: "100%" }}>
-          <MUIDataTable
-            title={"Tipos de Usuario"}
-            data={dataTable}
-            columns={columns}
-            options={options}
-          />
-        </Box>
-      </Grid>
-    </Grid>
+    <TablaBaseLayout title={"Tipo de Usuario"} placeholder="Ej: Administrador" api="rol" tableTitle="Tipo de Usuario"/>
+    // <Grid container spacing={2}>
+    //   <SectionTitle title="Tipo de Usuario" />
+    //   <FormContainer>
+    //     <form onSubmit={handleSubmit}>
+    //       <TextFieldComponent
+    //         label="Nombre"
+    //         placeholder="Ej: Administrador"
+    //         autoFocus={true}
+    //         value={roleName}
+    //         setValue={setRoleName}
+    //       />
+    //       <ButtonComponent update={update} />
+    //     </form>
+    //   </FormContainer>
+    //   <Grid item xl={3}>
+    //     <Box sx={{ boxShadow: 7, width: "100%" }}>
+    //       <MUIDataTable
+    //         title={"Tipos de Usuario"}
+    //         data={dataTable}
+    //         columns={columns}
+    //         options={options}
+    //       />
+    //     </Box>
+    //   </Grid>
+    // </Grid>
   );
 }
