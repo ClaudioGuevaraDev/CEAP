@@ -85,14 +85,14 @@ class MeasurementUnit(Base):
     def __repr__(self):
         return f"Measurement_unit(id={self.id_project!r})"
 
-class Type(Base):
-    """Type table"""
-    __tablename__ = "type"
+class ReactiveType(Base):
+    """ReactiveType table"""
+    __tablename__ = "reactive_type"
     id = Column(Integer, primary_key = True, nullable = False)
     name = Column(String, nullable = False)
     lab_reagent_r = relationship("LabReagent")
     def __repr__(self):
-        return f"Type(id={self.id_project!r})"
+        return f"ReactiveType(id={self.id_project!r})"
 
 class RequestReagent(Base):
     """Request_reagent table"""
@@ -126,7 +126,7 @@ class Brand(Base):
     name = Column(String, nullable = False)
     lab_equipment_r = relationship("LabEquipment")
     def __repr__(self):
-        return f"Type(id={self.id_project!r})"
+        return f"Brand(id={self.id_project!r})"
 
 class Provider(Base):
     """Provider table"""
@@ -135,7 +135,7 @@ class Provider(Base):
     name = Column(String, nullable = False)
     lab_equipment_r = relationship("LabEquipment")
     def __repr__(self):
-        return f"Type(id={self.id_project!r})"
+        return f"Provider(id={self.id_project!r})"
 
 class Status(Base):
     """Status table"""
@@ -144,7 +144,7 @@ class Status(Base):
     name = Column(String, nullable = False)
     lab_equipment_r = relationship("LabEquipment")
     def __repr__(self):
-        return f"Type(id={self.id_project!r})"
+        return f"Status(id={self.id_project!r})"
 
 class Maintenance(Base):
     """Maintenance table"""
@@ -153,7 +153,7 @@ class Maintenance(Base):
     date = Column(DateTime, nullable = False)
     id_equipment = Column(Integer, ForeignKey("lab_equipment.id"), nullable = False)
     def __repr__(self):
-        return f"Type(id={self.id_project!r})"
+        return f"Maintenance(id={self.id_project!r})"
 
 class RequestEquipment(Base):
     """Request_equipment table"""
