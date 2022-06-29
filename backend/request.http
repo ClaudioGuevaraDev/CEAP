@@ -7,18 +7,11 @@ Content-Type: application/json
 {
 }
 ###
-POST {{api}}/status/get/
+POST {{api}}/provider/insert/
 Content-Type: application/json
 
 {
-}
-
-###
-POST {{api}}/status/insert/
-Content-Type: application/json
-
-{
-    "name": "clint"
+    "name": "dfsf"
 }
 
 ###
@@ -31,11 +24,11 @@ Content-Type: application/json
 
 
 ###
-POST {{api}}/rol/delete/
+POST {{api}}/provider/delete/
 Content-Type: application/json
 
 {
-    "id": 13
+    "id": 1
 }
 
 ###
