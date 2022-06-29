@@ -9,7 +9,7 @@ class Crud:
         self.con = con
         self.engine = engine
         self.session = session
-        
+
     def get_(self, data, model):
         """Get table data using data paramenters
         Returns all data if there aren't parameters"""
@@ -31,6 +31,8 @@ class Crud:
             self.session.commit()
             return self.get_(data, model)[-1]
         except Exception as exception:
+            self.session.flush()
+            self.session.commit()
             return str(exception)
 
     def update_(self, query, replace, model):
@@ -45,6 +47,8 @@ class Crud:
             self.session.commit()
             return self.get_(replace, model)[-1]
         except Exception as exception:
+            self.session.flush()
+            self.session.commit()
             return str(exception)
 
     def delete_(self, data, model):
@@ -59,5 +63,7 @@ class Crud:
             self.session.commit()
             return selected
         except Exception as exception:
+            self.session.flush()
+            self.session.commit()
             return str(exception)
             
