@@ -7,6 +7,7 @@ export default function ProyectoSection() {
       placeholder="Ej: Proyecto"
       api="project"
       tableTitle="Lista de Proyectos"
+      errorMessage="el proyecto"
     />
   );
 }

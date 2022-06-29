@@ -1,20 +1,21 @@
 @api = http://127.0.0.1:5000/api
 
 ###
-POST {{api}}/status/get/
+POST {{api}}/rol/get/
 Content-Type: application/json
 
 {
 }
 ###
-POST {{api}}/status/get/
+POST {{api}}/provider/get/
 Content-Type: application/json
 
 {
+    "name": "wenas"
 }
 
 ###
-POST {{api}}/status/insert/
+POST {{api}}/status/get/
 Content-Type: application/json
 
 {
@@ -35,7 +36,7 @@ POST {{api}}/rol/delete/
 Content-Type: application/json
 
 {
-    "id": 13
+    "id": 3
 }
 
 ###

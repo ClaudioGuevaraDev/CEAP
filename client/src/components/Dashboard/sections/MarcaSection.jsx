@@ -7,6 +7,7 @@ export default function MarcaSection() {
       placeholder="Ej: Marca"
       api="brand"
       tableTitle="Lista de Marcas"
+      errorMessage="la marca"
     />
   );
 }

@@ -7,6 +7,7 @@ export default function ProveedorSection() {
       placeholder="Ej: Proveedor"
       api="provider"
       tableTitle="Lista de Proveedores"
+      errorMessage="el proveedor"
     />
   );
 }

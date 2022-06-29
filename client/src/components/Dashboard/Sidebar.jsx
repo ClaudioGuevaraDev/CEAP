@@ -58,6 +58,12 @@ export default function SidebarComponent({ handleSection }) {
             </ListItemIcon>
             <ListItemText primary="Estados" />
           </ListItemButton>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("tipo_reactivo")}>
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tipo de Reactivos" />
+          </ListItemButton>
         </List>
       </Collapse>
     </List>

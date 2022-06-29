@@ -7,6 +7,7 @@ export default function EstadoSection() {
       placeholder="Ej: Estado"
       api="status"
       tableTitle="Lista de Estados"
+      errorMessage="el tipo de estado"
     />
   );
 }

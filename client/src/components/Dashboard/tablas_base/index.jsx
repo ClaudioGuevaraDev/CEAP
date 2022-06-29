@@ -39,6 +39,7 @@ export default function TablaBaseLayout({
   placeholder,
   tableTitle,
   api,
+  errorMessage,
 }) {
   const [nameInput, setNameInput] = useState("");
   const [update, setUpdate] = useState(false);
@@ -50,8 +51,11 @@ export default function TablaBaseLayout({
     setUpdateId(d.id);
   };
 
-  const { dataTable, setDataTable, getData, handleDelete } =
-    useGetDataTableBase({ api, handleUpdate });
+  const { dataTable, setDataTable, handleDelete } = useGetDataTableBase({
+    api,
+    handleUpdate,
+    errorMessage,
+  });
   const { handleSubmit } = useHandleFormTablaBase({
     api,
     nameInput,
@@ -64,6 +68,7 @@ export default function TablaBaseLayout({
     dataTable,
     handleDelete,
     handleUpdate,
+    errorMessage,
   });
 
   return (
@@ -81,16 +86,18 @@ export default function TablaBaseLayout({
           <ButtonComponent update={update} />
         </form>
       </FormContainer>
-      <Grid item xl={3}>
-        <Box sx={{ boxShadow: 7, width: "100%" }}>
-          <MUIDataTable
-            title={tableTitle}
-            data={dataTable}
-            columns={columns}
-            options={options}
-          />
-        </Box>
-      </Grid>
+      {dataTable.length > 0 && (
+        <Grid item xl={3}>
+          <Box sx={{ boxShadow: 7, width: "100%" }}>
+            <MUIDataTable
+              title={tableTitle}
+              data={dataTable}
+              columns={columns}
+              options={options}
+            />
+          </Box>
+        </Grid>
+      )}
     </Grid>
   );
 }
