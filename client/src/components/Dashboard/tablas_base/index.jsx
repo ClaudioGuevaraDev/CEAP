@@ -19,14 +19,14 @@ const columns = [
   },
   {
     name: "name",
-    label: "Name",
+    label: "Nombre",
     options: {
       filter: true,
     },
   },
   {
     name: "options",
-    label: "Options",
+    label: "Opciones",
   },
 ];
 

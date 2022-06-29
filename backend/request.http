@@ -6,7 +6,12 @@ Content-Type: application/json
 
 {
 }
+###
+POST {{api}}/status/get/
+Content-Type: application/json
 
+{
+}
 
 ###
 POST {{api}}/status/insert/

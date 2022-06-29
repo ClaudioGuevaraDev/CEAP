@@ -25,11 +25,38 @@ export default function SidebarComponent({ handleSection }) {
       </ListItemButton>
       <Collapse in={openConfiguration} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("tipo_usuario")}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("tipo_usuario")}
+          >
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
-            <ListItemText primary="Tipo de Usuario" />
+            <ListItemText primary="Tipos de Usuario" />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("marca")}>
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Marcas" />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("proyecto")}>
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Proyectos" />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("proveedor")}>
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Proveedores" />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("estado")}>
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Estados" />
           </ListItemButton>
         </List>
       </Collapse>
