@@ -1,7 +1,7 @@
 @api = http://127.0.0.1:5000/api
 
 ###
-POST {{api}}/rol/get/
+POST {{api}}/status/get/
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 
 ###
-POST {{api}}/rol/insert/
+POST {{api}}/status/insert/
 Content-Type: application/json
 
 {
