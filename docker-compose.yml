@@ -1,14 +1,6 @@
 version: '3.8'
 
 services:
-  client:
-    container_name: frontend
-    restart: always
-    build: ./client
-    ports:
-      - "4000:3000"
-    depends_on:
-      - server
   server:
     container_name: backend
     restart: always

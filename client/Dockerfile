@@ -1,14 +1,9 @@
-FROM node:16
+FROM node:16-alpine
 
 WORKDIR /usr/src/app
 
-COPY package.json .
-COPY package-lock.json .
-
-RUN npm install --legacy-peer-deps
-
 COPY . .
 
-EXPOSE 3000
+RUN npm install --legacy-peer-deps
 
 CMD [ "npm", "run", "dev" ]
