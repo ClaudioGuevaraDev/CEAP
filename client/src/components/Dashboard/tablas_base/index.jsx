@@ -11,13 +11,6 @@ import useHandleFormTablaBase from "../../../hooks/tablas_base/useHandleFormTabl
 
 const columns = [
   {
-    name: "id",
-    label: "ID",
-    options: {
-      sort: true,
-    },
-  },
-  {
     name: "name",
     label: "Nombre",
     options: {

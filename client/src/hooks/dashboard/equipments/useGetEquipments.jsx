@@ -12,7 +12,6 @@ export default function useGetEquipments() {
         "http://127.0.0.1:5000/api/lab_equipment/get/",
         post
       );
-        console.log(data.results)
       setEquipments(data.results)
     } catch (error) {
       setEquipments();
