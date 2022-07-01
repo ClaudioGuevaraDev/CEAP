@@ -83,6 +83,15 @@ export default function SidebarComponent({ handleSection }) {
             </ListItemIcon>
             <ListItemText primary="Tipo de Reactivos" />
           </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("unidad_medida")}
+          >
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Unidades de Medida" />
+          </ListItemButton>
         </List>
       </Collapse>
     </List>

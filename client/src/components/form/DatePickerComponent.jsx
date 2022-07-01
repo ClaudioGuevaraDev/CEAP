@@ -1,11 +1,11 @@
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { FormGroup, TextField } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 
 export default function DatePickerComponent({ value, setValue, label }) {
   return (
-    <FormGroup sx={{ marginTop: 2 }}>
+    <FormControl fullWidth sx={{ marginTop: 2 }} focused>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DesktopDatePicker
           label={label}
@@ -15,6 +15,6 @@ export default function DatePickerComponent({ value, setValue, label }) {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-    </FormGroup>
+    </FormControl>
   );
 }
