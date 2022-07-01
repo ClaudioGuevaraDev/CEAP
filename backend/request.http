@@ -10,6 +10,7 @@ Content-Type: application/json
 
 ###id_brand, id_provider, id_status deben ser selects de sus tablas
 ###las fechas están en orden mes-dia-año
+###La fecha de mantención puede ser null
 POST {{api}}/lab_equipment/insert/
 Content-Type: application/json
 
