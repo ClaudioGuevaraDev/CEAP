@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Stack } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,6 +10,8 @@ import SelectComponent from "../../form/SelectComponent";
 import TextFieldComponent from "../../form/text_field_component";
 import SectionTitle from "../../section_title";
 import DataTable from "../../DataTable";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const columns = [
   {
@@ -36,6 +38,10 @@ const columns = [
     name: "id_status",
     label: "Estado",
   },
+  {
+    name: "options",
+    label: "Opciones",
+  },
 ];
 
 export default function EquiposSection() {
@@ -48,6 +54,8 @@ export default function EquiposSection() {
   const [nextMaintanance, setNextMaintanance] = useState("2014-08-18");
   const [status, setStatus] = useState([]);
   const [valueStatus, setValueStatus] = useState("");
+  const [update, setUpdate] = useState(false);
+  const [updatedID, setUpdatedID] = useState("");
 
   useGetTableBase({
     api: "brand",
@@ -70,7 +78,18 @@ export default function EquiposSection() {
     setValueOption: setValueStatus,
   });
 
-  const { equipments, setEquipments } = useGetEquipments();
+  const handleUpdate = (data) => {
+    setUpdate(true);
+    setUpdatedID(data.id)
+    setEquipmentName(data.name);
+    setSerial(data.serial);
+    setNextMaintanance(data.next_maintanance);
+    setValueMarca(data.id_brand);
+    setValueProveedor(data.id_provider);
+    setValueStatus(data.id_status);
+  };
+
+  const { equipments, setEquipments, handleDelete } = useGetEquipments({ handleUpdate });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,7 +109,25 @@ export default function EquiposSection() {
         post
       );
 
-      setEquipments(equipments.concat(data.results));
+      setEquipments(
+        equipments.concat({
+          ...data.results,
+          options: (
+            <Stack direction="row" spacing={2}>
+              <Button variant="contained" color="warning">
+                <EditIcon />
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => handleDelete(data.results.id)}
+              >
+                <DeleteIcon />
+              </Button>
+            </Stack>
+          ),
+        })
+      );
 
       setEquipmentName("");
       setSerial("");
