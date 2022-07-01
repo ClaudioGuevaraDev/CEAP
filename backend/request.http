@@ -1,48 +1,16 @@
 @api = http://127.0.0.1:5000/api
 ###
 
-POST {{api}}/lab_equipment/get/
+POST {{api}}/lab_equipment/get_joined/
 Content-Type: application/json
 
 {
 }
+
 ###
 
-###id_brand, id_provider, id_status deben ser selects de sus tablas
-###las fechas están en orden mes-dia-año
-###La fecha de mantención puede ser null
-POST {{api}}/lab_equipment/insert/
+POST {{api}}/lab_reagent/get_joined/
 Content-Type: application/json
 
 {
-    "name": "probeta",
-    "serial": "safdsafd",
-    "id_brand": 1,
-    "id_provider": 1,
-    "next_maintanance": "01-31-2022",
-    "id_status": 1
-}
-
-###Importante, crear primero measurement_unit (id,name)
-
-POST {{api}}/lab_reagent/get/
-Content-Type: application/json
-
-{
-}
-###
-
-###id_measurement_unit, id_type deben ser selects de sus tablas
-###las fechas están en orden mes-dia-año
-POST {{api}}/lab_reagent/insert/
-Content-Type: application/json
-
-{
-    "name": "alcohol gel",
-    "cas": "safdsafd",
-    "actual_amount": 1000,
-    "id_measurement_unit": 1,
-    "expiration_date": "01-31-2022",
-    "id_type": 1,
-    "buy_alarm": 50
 }

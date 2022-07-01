@@ -69,9 +69,9 @@ class LabReagent(Base):
     cas = Column(String, nullable = False)
     expiration_date = Column(DateTime, nullable = False)
     actual_amount = Column(Float, nullable = False)
+    buy_alarm = Column(Float, nullable = False)
     id_measurement_unit = Column(Integer, ForeignKey("measurement_unit.id"), nullable = False)
     id_type = Column(Integer, ForeignKey("reactive_type.id"), nullable = False)
-    buy_alarm = Column(Float, nullable = False)
     request_reagent_r = relationship("RequestReagent")
     def __repr__(self):
         return f"Lab_reagent(id={self.id!r})"

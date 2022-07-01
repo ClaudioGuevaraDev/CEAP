@@ -30,3 +30,8 @@ def update_lab_reagent():
 def delete_lab_reagent():
     """calls to interface delete function"""
     return parser.delete(request)
+
+@lab_reagent_blueprint.route('/get_joined/', methods=["POST"])
+def get_joined_lab_reagent():
+    """Calls to database get_joined function"""
+    return parser.reagent_get_joined(request)

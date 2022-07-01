@@ -2,8 +2,8 @@
 from flask import make_response
 class Interface:
     """Interface class for parsing requests and responses"""
-    def __init__(self, model, db_name):
-        self.db_name = db_name
+    def __init__(self, model, db_instance):
+        self.db_instance = db_instance
         self.model = model
     def parse_response(self, res):
         """Parse response and return results"""
@@ -14,18 +14,28 @@ class Interface:
         return make_response({"description": res}, 500)
     def get(self, request):
         """Get function, administrates success and error status"""
-        res = self.db_name.get_(request.json, self.model)
+        res = self.db_instance.get_(request.json, self.model)
         return self.parse_response(res)
     def insert(self, request):
         """Insert function, administrates success and error status"""
-        res = self.db_name.insert_(request.json, self.model)
+        res = self.db_instance.insert_(request.json, self.model)
         return self.parse_response(res)
     def update(self, request):
         """Update function, administrates success and error status"""
-        res = self.db_name.update_(request.json["query"], request.json["values"],
+        res = self.db_instance.update_(request.json["query"], request.json["values"],
                                     self.model)
         return self.parse_response(res)
     def delete(self, request):
         """Delete function, administrates success and error status"""
-        res = self.db_name.delete_(request.json, self.model)
+        res = self.db_instance.delete_(request.json, self.model)
+        return self.parse_response(res)
+
+    def equipment_get_joined(self, request):
+        """Equipment get joined"""
+        res = self.db_instance.equipment_get_joined(request.json)
+        return self.parse_response(res)
+
+    def reagent_get_joined(self, request):
+        """Equipment get joined"""
+        res = self.db_instance.reagent_get_joined(request.json)
         return self.parse_response(res)

@@ -30,3 +30,8 @@ def update_lab_equipment():
 def delete_lab_equipment():
     """calls to interface delete function"""
     return parser.delete(request)
+
+@lab_equipment_blueprint.route('/get_joined/', methods=["POST"])
+def get_joined_lab_equipment():
+    """Calls to database get_joined function"""
+    return parser.equipment_get_joined(request)
