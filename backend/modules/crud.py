@@ -19,8 +19,10 @@ class Crud:
             for key in keys:
                 stmt = stmt.where(getattr(model, key) == data[key])
             data = pd.read_sql(stmt, con = self.con)
-            data.fillna("", inplace = True)
-            data = data.astype(str)
+            for col in data.columns:
+                if data[col].dtype == object:
+                    data[col] = data[col].fillna("")
+                    data[col] = data[col].astype(str)
             return json.loads(data.to_json(orient="records"))
         except Exception as exception:
             return str(exception)
