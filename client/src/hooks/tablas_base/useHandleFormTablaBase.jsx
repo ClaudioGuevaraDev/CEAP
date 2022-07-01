@@ -40,6 +40,7 @@ export default function useHandleFormTablaBase({
           `http://127.0.0.1:5000/api/${api}/update/`,
           post
         );
+
         setDataTable(
           dataTable.map((d) => {
             if (d.id === data.results.id) {

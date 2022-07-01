@@ -10,6 +10,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import BuildIcon from "@mui/icons-material/Build";
 import ScienceIcon from "@mui/icons-material/Science";
+import BiotechIcon from '@mui/icons-material/Biotech';
 import { useState } from "react";
 
 export default function SidebarComponent({ handleSection }) {
@@ -17,6 +18,12 @@ export default function SidebarComponent({ handleSection }) {
 
   return (
     <List>
+      <ListItemButton onClick={() => handleSection("equipos")}>
+        <ListItemIcon>
+          <BiotechIcon />
+        </ListItemIcon>
+        <ListItemText primary="Equipos" />
+      </ListItemButton>
       <ListItemButton onClick={() => handleSection("reactivos")}>
         <ListItemIcon>
           <ScienceIcon />
@@ -82,6 +89,15 @@ export default function SidebarComponent({ handleSection }) {
               <LabelImportantIcon />
             </ListItemIcon>
             <ListItemText primary="Tipo de Reactivos" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("unidad_medida")}
+          >
+            <ListItemIcon>
+              <LabelImportantIcon />
+            </ListItemIcon>
+            <ListItemText primary="Unidades de Medida" />
           </ListItemButton>
         </List>
       </Collapse>
