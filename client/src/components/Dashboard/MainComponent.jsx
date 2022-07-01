@@ -8,6 +8,7 @@ import ProyectoSection from "./sections/ProyectoSection";
 import ProveedorSection from "./sections/ProveedorSection";
 import EstadoSection from "./sections/EstadoSection";
 import TipoReactivoSection from "./sections/TipoReactivoSection";
+import ReactivosSection from "./sections/ReactivosSection";
 
 export default function MainComponent({ open, section }) {
   return (
@@ -19,6 +20,7 @@ export default function MainComponent({ open, section }) {
       {section === "proveedor" && <ProveedorSection/>}
       {section === "estado" && <EstadoSection/>}
       {section === "tipo_reactivo" && <TipoReactivoSection/>}
+      {section === "reactivos" && <ReactivosSection/>}
     </Main>
   );
 }

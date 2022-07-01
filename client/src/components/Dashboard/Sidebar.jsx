@@ -9,6 +9,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import BuildIcon from "@mui/icons-material/Build";
+import ScienceIcon from "@mui/icons-material/Science";
 import { useState } from "react";
 
 export default function SidebarComponent({ handleSection }) {
@@ -16,6 +17,12 @@ export default function SidebarComponent({ handleSection }) {
 
   return (
     <List>
+      <ListItemButton onClick={() => handleSection("reactivos")}>
+        <ListItemIcon>
+          <ScienceIcon />
+        </ListItemIcon>
+        <ListItemText primary="Reactivos" />
+      </ListItemButton>
       <ListItemButton onClick={() => setOpenConfiguration(!openConfiguration)}>
         <ListItemIcon>
           <BuildIcon />
@@ -40,25 +47,37 @@ export default function SidebarComponent({ handleSection }) {
             </ListItemIcon>
             <ListItemText primary="Marcas" />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("proyecto")}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("proyecto")}
+          >
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
             <ListItemText primary="Proyectos" />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("proveedor")}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("proveedor")}
+          >
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
             <ListItemText primary="Proveedores" />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("estado")}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("estado")}
+          >
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
             <ListItemText primary="Estados" />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("tipo_reactivo")}>
+          <ListItemButton
+            sx={{ pl: 4 }}
+            onClick={() => handleSection("tipo_reactivo")}
+          >
             <ListItemIcon>
               <LabelImportantIcon />
             </ListItemIcon>
