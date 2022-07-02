@@ -1,16 +1,47 @@
 @api = http://127.0.0.1:5000/api
 ###
 
-POST {{api}}/lab_equipment/get_joined/
+POST {{api}}/lab_equipment/insert/
 Content-Type: application/json
 
 {
+    "name": "probeta",
+    "serial": "safdsafd",
+    "id_brand": 1,
+    "id_provider": 1,
+    "next_maintanance": "01-31-2022",
+    "id_status": 1
 }
 
 ###
 
-POST {{api}}/lab_reagent/get_joined/
+POST {{api}}/lab_reagent/insert/
 Content-Type: application/json
 
 {
+    "name": "alcohol gel",
+    "cas": "safdsafd",
+    "actual_amount": 1000,
+    "id_measurement_unit": 1,
+    "expiration_date": "01-31-2022",
+    "id_type": 1,
+    "buy_alarm": 50
+}
+
+###
+
+POST {{api}}/lab_reagent/get/
+Content-Type: application/json
+
+{
+
+}
+
+###
+
+POST {{api}}/lab_equipment/get/
+Content-Type: application/json
+
+{
+    
 }

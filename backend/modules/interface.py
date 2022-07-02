@@ -29,13 +29,3 @@ class Interface:
         """Delete function, administrates success and error status"""
         res = self.db_instance.delete_(request.json, self.model)
         return self.parse_response(res)
-
-    def equipment_get_joined(self, request):
-        """Equipment get joined"""
-        res = self.db_instance.equipment_get_joined(request.json)
-        return self.parse_response(res)
-
-    def reagent_get_joined(self, request):
-        """Equipment get joined"""
-        res = self.db_instance.reagent_get_joined(request.json)
-        return self.parse_response(res)

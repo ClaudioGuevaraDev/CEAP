@@ -1,6 +1,8 @@
 """CRUD"""
 import json
 from sqlalchemy import select, insert, update, delete
+from modules.models import LabEquipment, Brand, Provider, Status
+from modules.models import LabReagent, MeasurementUnit, ReactiveType
 import pandas as pd
 
 class Crud:
@@ -14,7 +16,35 @@ class Crud:
         """Get table data using data paramenters
         Returns all data if there aren't parameters"""
         try:
-            stmt = select(model)
+            if model.__tablename__ == "lab_reagent":
+                #LabReagent model (with joins)
+                stmt = select(LabReagent.id,
+                        LabReagent.name,
+                        LabReagent.cas,
+                        LabReagent.expiration_date,
+                        LabReagent.actual_amount,
+                        LabReagent.buy_alarm,
+                        MeasurementUnit.id.label("measurement_unit_id"),
+                        MeasurementUnit.name.label("measurement_unit_name"),
+                        ReactiveType.id.label("reactive_type_id"),
+                        ReactiveType.name.label("reactive_type_name"))
+                stmt = stmt.join(MeasurementUnit).join(ReactiveType)
+            elif model.__tablename__ == "lab_equipment":
+                #LabEquipment model (with joins)
+                stmt = select(LabEquipment.id,
+                        LabEquipment.name,
+                        LabEquipment.next_maintanance,
+                        LabEquipment.serial,
+                        Provider.id.label("provider_id"),
+                        Provider.name.label("provider_name"),
+                        Brand.id.label("brand_id"),
+                        Brand.name.label("brand_name"),
+                        Status.id.label("status_id"),
+                        Status.name.label("status_name"))
+                stmt = stmt.join(Provider).join(Brand).join(Status)
+            else:
+                #Other models
+                stmt = select(model)
             keys = data.keys()
             for key in keys:
                 stmt = stmt.where(getattr(model, key) == data[key])
@@ -49,7 +79,7 @@ class Crud:
             stmt = stmt.values(**replace)
             self.session.execute(stmt)
             self.session.commit()
-            return self.get_(replace, model)[-1]
+            return self.get_(query, model)[-1]
         except Exception as exception:
             self.session.flush()
             self.session.commit()
@@ -70,4 +100,3 @@ class Crud:
             self.session.flush()
             self.session.commit()
             return str(exception)
-            
