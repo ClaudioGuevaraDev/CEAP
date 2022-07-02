@@ -23,11 +23,11 @@ const columns = [
     label: "Serial",
   },
   {
-    name: "id_brand",
+    name: "brand_name",
     label: "Marca",
   },
   {
-    name: "id_provider",
+    name: "provider_name",
     label: "Proveedor",
   },
   {
@@ -35,7 +35,7 @@ const columns = [
     label: "Fecha de Mantención",
   },
   {
-    name: "id_status",
+    name: "status_name",
     label: "Estado",
   },
   {
@@ -80,67 +80,144 @@ export default function EquiposSection() {
 
   const handleUpdate = (data) => {
     setUpdate(true);
-    setUpdatedID(data.id)
+    setUpdatedID(data.id);
     setEquipmentName(data.name);
     setSerial(data.serial);
     setNextMaintanance(data.next_maintanance);
-    setValueMarca(data.id_brand);
-    setValueProveedor(data.id_provider);
-    setValueStatus(data.id_status);
+    setValueMarca(data.brand_id);
+    setValueProveedor(data.provider_id);
+    setValueStatus(data.status_id);
   };
 
-  const { equipments, setEquipments, handleDelete } = useGetEquipments({ handleUpdate });
+  const { equipments, setEquipments, handleDelete } = useGetEquipments({
+    handleUpdate,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const post = {
-        name: equipmentName,
-        serial: serial,
-        id_brand: valueMarca,
-        id_provider: valueProveedor,
-        next_maintanance: nextMaintanance,
-        id_status: valueStatus,
-      };
+    if (update === true) {
+      try {
+        const post = {
+          query: {
+            id: updatedID,
+          },
+          values: {
+            name: equipmentName,
+            serial: serial,
+            id_brand: valueMarca,
+            id_provider: valueProveedor,
+            next_maintanance: nextMaintanance,
+            id_status: valueStatus,
+          },
+        };
 
-      const { data } = await axios.post(
-        "http://127.0.0.1:5000/api/lab_equipment/insert/",
-        post
-      );
+        const { data } = await axios.post(
+          "http://127.0.0.1:5000/api/lab_equipment/update/",
+          post
+        );
 
-      setEquipments(
-        equipments.concat({
-          ...data.results,
-          options: (
-            <Stack direction="row" spacing={2}>
-              <Button variant="contained" color="warning">
-                <EditIcon />
-              </Button>
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => handleDelete(data.results.id)}
-              >
-                <DeleteIcon />
-              </Button>
-            </Stack>
-          ),
-        })
-      );
+        setEquipments(
+          equipments.map((e) => {
+            if (e.id === data.results.id) {
+              return {
+                ...data.results,
+                options: (
+                  <Stack direction="row" spacing={2}>
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      onClick={() => handleUpdate(data.results)}
+                    >
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => handleDelete(data.results.id)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Stack>
+                ),
+              };
+            } else {
+              return e;
+            }
+          })
+        );
+        
+        setUpdate(false);
+        setUpdatedID(0);
+        setEquipmentName("");
+        setSerial("");
+        setValueMarca(marcas[0].id);
+        setValueProveedor(proveedores[0].id);
+        setValueStatus(status[0].id);
+      } catch (error) {
+        toast.error("Error al actualizar el equipo");
+        setUpdate(false);
+        setUpdatedID(0);
+        setEquipmentName("");
+        setSerial("");
+        setValueMarca(marcas[0].id);
+        setValueProveedor(proveedores[0].id);
+        setValueStatus(status[0].id);
+      }
+    } else {
+      try {
+        const post = {
+          name: equipmentName,
+          serial: serial,
+          id_brand: valueMarca,
+          id_provider: valueProveedor,
+          next_maintanance: nextMaintanance,
+          id_status: valueStatus,
+        };
 
-      setEquipmentName("");
-      setSerial("");
-      setValueMarca(marcas[0].id);
-      setValueProveedor(proveedores[0].id);
-      setValueStatus(status[0].id);
-    } catch (error) {
-      toast.error("Error al crear el equipo.");
-      setEquipmentName("");
-      setSerial("");
-      setValueMarca(marcas[0].id);
-      setValueProveedor(proveedores[0].id);
-      setValueStatus(status[0].id);
+        const { data } = await axios.post(
+          "http://127.0.0.1:5000/api/lab_equipment/insert/",
+          post
+        );
+
+        setEquipments(
+          equipments.concat({
+            ...data.results,
+            options: (
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={() => handleUpdate(data.results)}
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleDelete(data.results.id)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Stack>
+            ),
+          })
+        );
+
+        setEquipmentName("");
+        setSerial("");
+        setValueMarca(marcas[0].id);
+        setValueProveedor(proveedores[0].id);
+        setValueStatus(status[0].id);
+      } catch (error) {
+        console.log(error);
+        toast.error("Error al crear el equipo.");
+        setEquipmentName("");
+        setSerial("");
+        setValueMarca(marcas[0].id);
+        setValueProveedor(proveedores[0].id);
+        setValueStatus(status[0].id);
+      }
     }
   };
 
@@ -200,7 +277,7 @@ export default function EquiposSection() {
             fullWidth
             sx={{ marginTop: 2 }}
           >
-            CREAR
+            {update ? "Editar" : "Crear"}
           </Button>
         </form>
       </FormContainer>
