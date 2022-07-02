@@ -2,7 +2,6 @@ import { Button, Grid, Stack } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import useGetEquipments from "../../../hooks/dashboard/equipments/useGetEquipments";
 import useGetTableBase from "../../../hooks/tablas_base/useGetTableBase";
 import DatePickerComponent from "../../form/DatePickerComponent";
 import FormContainer from "../../form/form_container";
@@ -12,6 +11,7 @@ import SectionTitle from "../../section_title";
 import DataTable from "../../DataTable";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import useGetData from "../../../hooks/dashboard/useGetData";
 
 const columns = [
   {
@@ -89,8 +89,10 @@ export default function EquiposSection() {
     setValueStatus(data.status_id);
   };
 
-  const { equipments, setEquipments, handleDelete } = useGetEquipments({
-    handleUpdate,
+  const { values, setValues, handleDelete } = useGetData({
+    api: "lab_equipment",
+    errorMessage: "equipo",
+    handleUpdate
   });
 
   const handleSubmit = async (e) => {
@@ -117,8 +119,8 @@ export default function EquiposSection() {
           post
         );
 
-        setEquipments(
-          equipments.map((e) => {
+        setValues(
+          values.map((e) => {
             if (e.id === data.results.id) {
               return {
                 ...data.results,
@@ -146,7 +148,7 @@ export default function EquiposSection() {
             }
           })
         );
-        
+
         setUpdate(false);
         setUpdatedID(0);
         setEquipmentName("");
@@ -180,8 +182,8 @@ export default function EquiposSection() {
           post
         );
 
-        setEquipments(
-          equipments.concat({
+        setValues(
+          values.concat({
             ...data.results,
             options: (
               <Stack direction="row" spacing={2}>
@@ -286,7 +288,7 @@ export default function EquiposSection() {
         <DataTable
           title="Lista de Equipos"
           columns={columns}
-          data={equipments}
+          data={values}
         />
       </Grid>
     </Grid>
