@@ -473,13 +473,6 @@ ALTER SEQUENCE public.user_id OWNED BY public."user".id;
 
 
 --
--- Name: provider id; Type: DEFAULT; Schema: public; Owner: user
---
-
-ALTER TABLE ONLY public.provider ALTER COLUMN id SET DEFAULT nextval('public.provider_id'::regclass);
-
-
---
 -- Name: brand id; Type: DEFAULT; Schema: public; Owner: user
 --
 
@@ -519,6 +512,13 @@ ALTER TABLE ONLY public.measurement_unit ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.project ALTER COLUMN id SET DEFAULT nextval('public.project_id'::regclass);
+
+
+--
+-- Name: provider id; Type: DEFAULT; Schema: public; Owner: user
+--
+
+ALTER TABLE ONLY public.provider ALTER COLUMN id SET DEFAULT nextval('public.provider_id'::regclass);
 
 
 --
@@ -578,6 +578,50 @@ COPY public.lab_equipment (id, name, serial, id_brand, id_provider, next_maintan
 --
 
 COPY public.lab_reagent (id, name, cas, expiration_date, actual_amount, id_measurement_unit, id_type, buy_alarm) FROM stdin;
+0	1- butanol	71-36-3	\N	1.6	0	0	0
+1	1,4 – butanediol	110-63-4	\N	1	0	0	0
+2	2 – ethaxyethanol	110-80-5	\N	1	0	0	0
+3	Acetato de etilo	141-78-6	2022-11-15	5	0	0	0
+4	Acetonitrilo	75-05-8	2022-07-24	24.4	0	0	0
+5	Buffer 13	40130	2022-07-22	2	0	0	0
+6	Buffer 12	40120	2022-07-22	2	0	0	0
+7	Buffer 11	40110	2022-07-22	1.5	0	0	0
+8	Buffer 10.01	H17010	2023-05-20	0.5	0	0	0
+9	Buffer -10	40100	2022-07-22	1.5	0	0	0
+10	Buffer 9	40090	2022-07-22	2	0	0	0
+11	Buffer 7.01	HI7007	2022-08-23	2	0	0	0
+12	Buffer 4.01	HI7004	2022-07-23	2	0	0	0
+13	Buffer acetico pH 4.7	400480	2023-01-23	4	0	0	0
+14	Buffer tris HCL pH 7	400667	2023-01-22	3.5	0	0	0
+15	Etanol para cromatografi	64-17-5	\N	1	0	0	0
+16	Metanol HPLC	67-56-1	\N	0.5	0	0	0
+17	Reactivo de folin	521-24-4	\N	0.5	0	0	0
+18	Triethylamine	121-44-8	\N	0	0	0	0
+19	Sodio hidróxido 2N	1310-73-2	2023-01-24	2	0	0	0
+20	Sodio hidróxido 4N	1310-73-2	2023-01-24	2	0	0	0
+21	Sol. Almacenamiento para pH y ORP	H170300	2023-04-24	2	0	0	0
+22	Sol. De limpieza de electrodos	HI7061	2023-04-24	2	0	0	0
+23	Sol. Certificado pH 7.01	HI7007	2022-09-22	0.5	0	0	0
+24	Sol. Certificado pH 4.01	HI7004	2022-09-22	0.5	0	0	0
+25	1,2 – propanodiol	57-55-6	\N	0	0	0	0
+26	2 – ethaxyethanol	128082-2	\N	2.5	0	0	0
+27	Acetato de etilo	141-78-6	2023-05-24	15	0	0	0
+28	Ácido láctico 96%	50-21-5	2023-05-22	3.75	0	0	0
+29	Ácido ortofosfórico 85%	7664-38-2	2023-03-20	2.5	0	0	0
+30	Alcohol etílico 96%	64-17-5 	\N	20	0	0	0
+31	Benceno	71-43-2	2022-07-18	2.5	0	0	0
+32	CIS-DES	6898-97-1	\N	0	0	0	0
+33	Glicerina 85%	56-81-5	2022-09-18	0	0	0	0
+35	Dimetilclorometano	75-09-2	2023-01-23	0	0	0	0
+37	Etanol	64-17-5	2022-12-25	7.5	0	0	0
+38	Hexano	110-54-3	2023-03-26	0.9	0	0	0
+39	Metanol	67-56-1	2023-04-26	10	0	0	0
+40	Metanol HPLC	67-56-1	\N	9.6	0	0	0
+41	Metanol LC - MS	67-56-1	2022-10-24	7	0	0	0
+42	Metilo 2- aminobenzoato	134-20-3	\N	0	0	0	0
+34	Decahydronaphtalene	91-17-8	\N	30	1	0	0
+36	Etagline	-	\N	1000	3	0	0
+43	Uraline	-	\N	500	3	0	0
 \.
 
 
@@ -594,6 +638,10 @@ COPY public.maintenance (id, date, id_equipment) FROM stdin;
 --
 
 COPY public.measurement_unit (id, name) FROM stdin;
+0	L
+1	mL
+2	Kg
+3	g
 \.
 
 
@@ -626,6 +674,7 @@ COPY public.provider (id, name) FROM stdin;
 --
 
 COPY public.reactive_type (id, name) FROM stdin;
+0	Desconocido
 \.
 
 
