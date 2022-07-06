@@ -33,10 +33,19 @@ class Database(Crud):
         for equipment in data["equipments"]:
             res = self.insert_({"id_request": id_request,
                 "id_equipment": equipment["id"]}, RequestEquipment)
+            if isinstance(res, str):
+                self.delete_({"id_request": id_request}, RequestEquipment)
+                self.delete_({"id": id_request}, Request)
+                return res
         for reagent in data["reagents"]:
             res = self.insert_({"id_request": id_request,
                 "id_lab_reagent": reagent["id"],
                 "requested_amount": reagent["requested_amount"]}, RequestReagent)
+            if isinstance(res, str):
+                self.delete_({"id_request": id_request}, RequestEquipment)
+                self.delete_({"id_request": id_request}, RequestReagent)
+                self.delete_({"id": id_request}, Request)
+                return res
         del data["reagents"]
         del data["equipments"]
         return self.get_(data, Request)[-1]

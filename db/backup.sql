@@ -308,8 +308,7 @@ ALTER TABLE public.request OWNER TO "user";
 
 CREATE TABLE public.request_equipment (
     id_request integer NOT NULL,
-    id_equipment integer NOT NULL,
-    quantity integer NOT NULL
+    id_equipment integer NOT NULL
 );
 
 
@@ -343,7 +342,7 @@ ALTER SEQUENCE public.request_id OWNED BY public.request.id;
 CREATE TABLE public.request_reagent (
     id_request integer NOT NULL,
     id_lab_reagent integer NOT NULL,
-    requested_amount real NOT NULL
+    requested_amount double precision NOT NULL
 );
 
 
@@ -561,7 +560,7 @@ ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_
 --
 
 COPY public.brand (id, name) FROM stdin;
-6	fdafad
+1	xd
 \.
 
 
@@ -570,6 +569,8 @@ COPY public.brand (id, name) FROM stdin;
 --
 
 COPY public.lab_equipment (id, name, serial, id_brand, id_provider, next_maintanance, id_status) FROM stdin;
+1	probeta	123456	1	1	2022-07-07	1
+2	termociclador	123456	1	1	2022-07-07	2
 \.
 
 
@@ -578,50 +579,50 @@ COPY public.lab_equipment (id, name, serial, id_brand, id_provider, next_maintan
 --
 
 COPY public.lab_reagent (id, name, cas, expiration_date, actual_amount, id_measurement_unit, id_type, buy_alarm) FROM stdin;
-0	1- butanol	71-36-3	\N	1.6	0	0	0
-1	1,4 – butanediol	110-63-4	\N	1	0	0	0
-2	2 – ethaxyethanol	110-80-5	\N	1	0	0	0
-3	Acetato de etilo	141-78-6	2022-11-15	5	0	0	0
-4	Acetonitrilo	75-05-8	2022-07-24	24.4	0	0	0
-5	Buffer 13	40130	2022-07-22	2	0	0	0
-6	Buffer 12	40120	2022-07-22	2	0	0	0
-7	Buffer 11	40110	2022-07-22	1.5	0	0	0
-8	Buffer 10.01	H17010	2023-05-20	0.5	0	0	0
-9	Buffer -10	40100	2022-07-22	1.5	0	0	0
-10	Buffer 9	40090	2022-07-22	2	0	0	0
-11	Buffer 7.01	HI7007	2022-08-23	2	0	0	0
-12	Buffer 4.01	HI7004	2022-07-23	2	0	0	0
-13	Buffer acetico pH 4.7	400480	2023-01-23	4	0	0	0
-14	Buffer tris HCL pH 7	400667	2023-01-22	3.5	0	0	0
-15	Etanol para cromatografi	64-17-5	\N	1	0	0	0
-16	Metanol HPLC	67-56-1	\N	0.5	0	0	0
-17	Reactivo de folin	521-24-4	\N	0.5	0	0	0
-18	Triethylamine	121-44-8	\N	0	0	0	0
-19	Sodio hidróxido 2N	1310-73-2	2023-01-24	2	0	0	0
-20	Sodio hidróxido 4N	1310-73-2	2023-01-24	2	0	0	0
-21	Sol. Almacenamiento para pH y ORP	H170300	2023-04-24	2	0	0	0
-22	Sol. De limpieza de electrodos	HI7061	2023-04-24	2	0	0	0
-23	Sol. Certificado pH 7.01	HI7007	2022-09-22	0.5	0	0	0
-24	Sol. Certificado pH 4.01	HI7004	2022-09-22	0.5	0	0	0
-25	1,2 – propanodiol	57-55-6	\N	0	0	0	0
-26	2 – ethaxyethanol	128082-2	\N	2.5	0	0	0
-27	Acetato de etilo	141-78-6	2023-05-24	15	0	0	0
-28	Ácido láctico 96%	50-21-5	2023-05-22	3.75	0	0	0
-29	Ácido ortofosfórico 85%	7664-38-2	2023-03-20	2.5	0	0	0
-30	Alcohol etílico 96%	64-17-5 	\N	20	0	0	0
-31	Benceno	71-43-2	2022-07-18	2.5	0	0	0
-32	CIS-DES	6898-97-1	\N	0	0	0	0
-33	Glicerina 85%	56-81-5	2022-09-18	0	0	0	0
-35	Dimetilclorometano	75-09-2	2023-01-23	0	0	0	0
-37	Etanol	64-17-5	2022-12-25	7.5	0	0	0
-38	Hexano	110-54-3	2023-03-26	0.9	0	0	0
-39	Metanol	67-56-1	2023-04-26	10	0	0	0
-40	Metanol HPLC	67-56-1	\N	9.6	0	0	0
-41	Metanol LC - MS	67-56-1	2022-10-24	7	0	0	0
-42	Metilo 2- aminobenzoato	134-20-3	\N	0	0	0	0
-34	Decahydronaphtalene	91-17-8	\N	30	1	0	0
-36	Etagline	-	\N	1000	3	0	0
-43	Uraline	-	\N	500	3	0	0
+30	Ôö£├╝cido ortofosfÔö£Ôöérico 85%	7664-38-2	2023-03-20	2.5	2	1	0
+31	Alcohol etÔö£┬ílico 96%	64-17-5 	\N	20	2	1	0
+32	Benceno	71-43-2	2022-07-18	2.5	2	1	0
+33	CIS-DES	6898-97-1	\N	0	2	1	0
+34	Glicerina 85%	56-81-5	2022-09-18	0	2	1	0
+35	Dimetilclorometano	75-09-2	2023-01-23	0	2	1	0
+36	Etanol	64-17-5	2022-12-25	7.5	2	1	0
+37	Hexano	110-54-3	2023-03-26	0.9	2	1	0
+38	Metanol	67-56-1	2023-04-26	10	2	1	0
+39	Metanol HPLC	67-56-1	\N	9.6	2	1	0
+40	Metanol LC - MS	67-56-1	2022-10-24	7	2	1	0
+41	Metilo 2- aminobenzoato	134-20-3	\N	0	2	1	0
+42	Decahydronaphtalene	91-17-8	\N	30	1	1	0
+43	Etagline		\N	1000	3	2	0
+44	Uraline		\N	500	3	2	0
+22	Sol. Almacenamiento para pH y ORP	H170300	2023-04-24	2	2	1	0
+23	Sol. De limpieza de electrodos	HI7061	2023-04-24	2	2	1	0
+1	1- butanol	71-36-3	\N	1.6	2	1	0
+2	1,4 ├ö├ç├┤ butanediol	110-63-4	\N	1	2	1	0
+3	2 ├ö├ç├┤ ethaxyethanol	110-80-5	\N	1	2	1	0
+4	Acetato de etilo	141-78-6	2022-11-15	5	2	1	0
+5	Acetonitrilo	75-05-8	2022-07-24	24.4	2	1	0
+6	Buffer 13	40130	2022-07-22	2	2	1	0
+7	Buffer 12	40120	2022-07-22	2	2	1	0
+8	Buffer 11	40110	2022-07-22	1.5	2	1	0
+9	Buffer 10.01	H17010	2023-05-20	0.5	2	1	0
+10	Buffer -10	40100	2022-07-22	1.5	2	1	0
+11	Buffer 9	40090	2022-07-22	2	2	1	0
+12	Buffer 7.01	HI7007	2022-08-23	2	2	1	0
+13	Buffer 4.01	HI7004	2022-07-23	2	2	1	0
+14	Buffer acetico pH 4.7	400480	2023-01-23	4	2	1	0
+15	Buffer tris HCL pH 7	400667	2023-01-22	3.5	2	1	0
+16	Etanol para cromatografi	64-17-5	\N	1	2	1	0
+24	Sol. Certificado pH 7.01	HI7007	2022-09-22	0.5	2	1	0
+25	Sol. Certificado pH 4.01	HI7004	2022-09-22	0.5	2	1	0
+26	1,2 ├ö├ç├┤ propanodiol	57-55-6	\N	0	2	1	0
+27	2 ├ö├ç├┤ ethaxyethanol	128082-2	\N	2.5	2	1	0
+28	Acetato de etilo	141-78-6	2023-05-24	15	2	1	0
+29	Ôö£├╝cido lÔö£├¡ctico 96%	50-21-5	2023-05-22	3.75	2	1	0
+17	Metanol HPLC	67-56-1	\N	0.5	2	1	0
+18	Reactivo de folin	521-24-4	\N	0.5	2	1	0
+19	Triethylamine	121-44-8	\N	0	2	1	0
+20	Sodio hidrÔö£Ôöéxido 2N	1310-73-2	2023-01-24	2	2	1	0
+21	Sodio hidrÔö£Ôöéxido 4N	1310-73-2	2023-01-24	2	2	1	0
 \.
 
 
@@ -638,10 +639,9 @@ COPY public.maintenance (id, date, id_equipment) FROM stdin;
 --
 
 COPY public.measurement_unit (id, name) FROM stdin;
-0	L
 1	mL
-2	Kg
 3	g
+2	L
 \.
 
 
@@ -650,6 +650,8 @@ COPY public.measurement_unit (id, name) FROM stdin;
 --
 
 COPY public.member (id_project, id_user) FROM stdin;
+1	1
+2	2
 \.
 
 
@@ -658,6 +660,8 @@ COPY public.member (id_project, id_user) FROM stdin;
 --
 
 COPY public.project (id, name) FROM stdin;
+1	CNN en ingenier├¡a de prote├¡nas
+2	GNN en ingenier├¡a de prote├¡nas
 \.
 
 
@@ -666,6 +670,7 @@ COPY public.project (id, name) FROM stdin;
 --
 
 COPY public.provider (id, name) FROM stdin;
+1	xd
 \.
 
 
@@ -674,6 +679,8 @@ COPY public.provider (id, name) FROM stdin;
 --
 
 COPY public.reactive_type (id, name) FROM stdin;
+2	S├│lido
+1	L├¡quido
 0	Desconocido
 \.
 
@@ -683,6 +690,22 @@ COPY public.reactive_type (id, name) FROM stdin;
 --
 
 COPY public.request (id, request_date, id_user, use_date, id_project) FROM stdin;
+2	2022-06-07	1	2022-01-31	1
+7	2022-06-07	1	2022-01-31	1
+8	2022-06-07	1	2022-01-31	1
+9	2022-06-07	1	2022-01-31	1
+10	2022-06-07	1	2022-01-31	1
+11	2022-06-07	1	2022-01-31	1
+12	2022-06-07	1	2022-01-31	1
+13	2022-06-07	1	2022-01-31	1
+14	2022-06-07	1	2022-01-31	1
+15	2022-06-07	1	2022-01-31	1
+24	2022-06-07	1	2022-01-31	1
+25	2022-06-07	1	2022-01-31	1
+27	2022-06-07	1	2022-01-31	1
+28	2022-06-07	1	2022-01-31	1
+29	2022-06-07	1	2022-01-31	1
+30	2022-06-07	1	2022-01-31	1
 \.
 
 
@@ -690,7 +713,17 @@ COPY public.request (id, request_date, id_user, use_date, id_project) FROM stdin
 -- Data for Name: request_equipment; Type: TABLE DATA; Schema: public; Owner: user
 --
 
-COPY public.request_equipment (id_request, id_equipment, quantity) FROM stdin;
+COPY public.request_equipment (id_request, id_equipment) FROM stdin;
+7	1
+8	1
+27	1
+27	2
+28	1
+28	2
+29	1
+29	2
+30	1
+30	2
 \.
 
 
@@ -699,6 +732,14 @@ COPY public.request_equipment (id_request, id_equipment, quantity) FROM stdin;
 --
 
 COPY public.request_reagent (id_request, id_lab_reagent, requested_amount) FROM stdin;
+27	1	4.6
+27	2	5.4
+28	1	4.6
+28	2	5.4
+29	1	4.6
+29	2	5.4
+30	1	4.6
+30	2	5.4
 \.
 
 
@@ -707,7 +748,8 @@ COPY public.request_reagent (id_request, id_lab_reagent, requested_amount) FROM 
 --
 
 COPY public.rol (id, name) FROM stdin;
-3	clint
+2	administrador
+1	usuario
 \.
 
 
@@ -716,6 +758,9 @@ COPY public.rol (id, name) FROM stdin;
 --
 
 COPY public.status (id, name) FROM stdin;
+1	Bueno
+2	En mantenci├│n
+3	Defectuoso
 \.
 
 
@@ -724,6 +769,9 @@ COPY public.status (id, name) FROM stdin;
 --
 
 COPY public."user" (id, full_name, email, password, id_rol) FROM stdin;
+1	Gabriel Cabas	gabriel@gmail.com	123456	1
+2	Claudio Guevara	claudio@gmail.com	123456	1
+3	Administrador	admin@gmail.com	123456	2
 \.
 
 
@@ -738,7 +786,7 @@ SELECT pg_catalog.setval('public.brand_id', 1, true);
 -- Name: lab_equipment_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.lab_equipment_id', 1, true);
+SELECT pg_catalog.setval('public.lab_equipment_id', 3, true);
 
 
 --
@@ -766,21 +814,21 @@ SELECT pg_catalog.setval('public.measurement_unit_id', 1, false);
 -- Name: project_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.project_id', 1, false);
+SELECT pg_catalog.setval('public.project_id', 2, true);
 
 
 --
 -- Name: provider_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.provider_id', 1, false);
+SELECT pg_catalog.setval('public.provider_id', 1, true);
 
 
 --
 -- Name: request_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.request_id', 1, false);
+SELECT pg_catalog.setval('public.request_id', 30, true);
 
 
 --
@@ -794,7 +842,7 @@ SELECT pg_catalog.setval('public.rol_id', 1, true);
 -- Name: status_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.status_id', 1, false);
+SELECT pg_catalog.setval('public.status_id', 3, true);
 
 
 --
@@ -808,7 +856,7 @@ SELECT pg_catalog.setval('public.type_id', 1, false);
 -- Name: user_id; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.user_id', 1, false);
+SELECT pg_catalog.setval('public.user_id', 3, true);
 
 
 --
