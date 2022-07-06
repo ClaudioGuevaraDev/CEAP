@@ -6,16 +6,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import toast from "react-hot-toast";
 
-export default function useGetEquipments({ handleUpdate }) {
-  const [equipments, setEquipments] = useState([]);
+export default function useGetData({ api, errorMessage, handleUpdate }) {
+  const [values, setValues] = useState([]);
 
-  const getEquipments = async () => {
+  const getData = async () => {
     try {
       const post = {};
       const { data } = await axios.post(
-        "http://127.0.0.1:5000/api/lab_equipment/get/",
+        `http://127.0.0.1:5000/api/${api}/get/`,
         post
       );
+
+      console.log(data.results)
 
       const new_data = data.results.map((d) => {
         return {
@@ -41,9 +43,9 @@ export default function useGetEquipments({ handleUpdate }) {
         };
       });
 
-      setEquipments(new_data);
+      setValues(new_data);
     } catch (error) {
-      setEquipments();
+      setValues([]);
     }
   };
 
@@ -53,21 +55,21 @@ export default function useGetEquipments({ handleUpdate }) {
         id: id,
       };
 
-      await axios.post("http://127.0.0.1:5000/api/lab_equipment/delete/", post);
+      await axios.post(`http://127.0.0.1:5000/api/${api}/delete/`, post);
 
-      getEquipments();
+      getData();
     } catch (error) {
-      toast.error("Error al eliminar el equipo.");
+      toast.error(`Error al eliminar el ${errorMessage}.`);
     }
   };
 
   useEffect(() => {
-    getEquipments();
+    getData();
   }, []);
 
   return {
-    equipments,
-    setEquipments,
+    values,
+    setValues,
     handleDelete,
   };
 }
