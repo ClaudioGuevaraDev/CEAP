@@ -102,7 +102,8 @@ class RequestReagent(Base):
     id_request = Column(Integer, ForeignKey("request.id"), primary_key = True, nullable = False)
     requested_amount = Column(Float, nullable = False)
     def __repr__(self):
-        return f"Request_reagent(id_project={self.id_project!r}, id_user={self.id_user!r})"
+        return f"""Request_reagent(id_lab_reagent={self.id_lab_reagent!r},
+        id_request={self.id_request!r})"""
 
 class LabEquipment(Base):
     """Lab_equipment table"""
@@ -161,6 +162,6 @@ class RequestEquipment(Base):
     id_request = Column(Integer, ForeignKey("request.id"), primary_key = True, nullable = False)
     id_equipment = Column(Integer, ForeignKey("lab_equipment.id"),
                             primary_key = True, nullable = False)
-    quantity = Column(Float, nullable = False)
     def __repr__(self):
-        return f"Request_reagent(id_project={self.id_project!r}, id_user={self.id_user!r})"
+        return f"""Request_reagent(id_request={self.id_request!r},
+        id_equipment={self.id_equipment!r})"""

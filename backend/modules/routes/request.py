@@ -30,3 +30,9 @@ def update_request():
 def delete_request():
     """calls to interface delete function"""
     return parser.delete(request)
+
+@request_blueprint.route('/create_request/', methods=["POST"])
+def create_request():
+    """calls to create_request function"""
+    res = db.create_request(request.json)
+    return parser.parse_response(res)

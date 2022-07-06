@@ -3,6 +3,7 @@ import json
 from sqlalchemy import select, insert, update, delete
 from modules.models import LabEquipment, Brand, Provider, Status
 from modules.models import LabReagent, MeasurementUnit, ReactiveType
+from modules.models import Request, Project, User
 import pandas as pd
 
 class Crud:
@@ -16,7 +17,7 @@ class Crud:
         """Get table data using data paramenters
         Returns all data if there aren't parameters"""
         try:
-            if model.__tablename__ == "lab_reagent":
+            if model == LabReagent:
                 #LabReagent model (with joins)
                 stmt = select(LabReagent.id,
                         LabReagent.name,
@@ -29,7 +30,7 @@ class Crud:
                         ReactiveType.id.label("reactive_type_id"),
                         ReactiveType.name.label("reactive_type_name"))
                 stmt = stmt.join(MeasurementUnit).join(ReactiveType)
-            elif model.__tablename__ == "lab_equipment":
+            elif model == LabEquipment:
                 #LabEquipment model (with joins)
                 stmt = select(LabEquipment.id,
                         LabEquipment.name,
@@ -42,6 +43,14 @@ class Crud:
                         Status.id.label("status_id"),
                         Status.name.label("status_name"))
                 stmt = stmt.join(Provider).join(Brand).join(Status)
+            elif model == Request:
+                #Request model (with joins)
+                stmt = select(Request.id.label("id"),
+                        Request.request_date,
+                        Request.use_date,
+                        Project.name.label("project_name"),
+                        User.full_name.label("user_full_name"))
+                stmt = stmt.join(Project).join(User)
             else:
                 #Other models
                 stmt = select(model)

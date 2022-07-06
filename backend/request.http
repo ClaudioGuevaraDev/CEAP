@@ -45,3 +45,32 @@ Content-Type: application/json
 {
     
 }
+
+###
+
+POST {{api}}/request/create_request/
+Content-Type: application/json
+
+{
+    "id_user": 1,
+    "id_project": 1,
+    "use_date": "01/31/2022",
+    "reagents": [
+        {
+            "id": 1,
+            "requested_amount": 4.6
+        },
+        {
+            "id": 2,
+            "requested_amount": 5.4
+        }
+    ],
+    "equipments":[
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        }
+    ]
+}
