@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from modules.crud import Crud
-from modules.models import Request, RequestEquipment, RequestReagent
-
+from modules.models import Request, RequestEquipment, RequestReagent, User
+from jwt import encode
 
 class Database(Crud):
     """Database class for db administration
@@ -49,3 +49,19 @@ class Database(Crud):
         del data["reagents"]
         del data["equipments"]
         return self.get_(data, Request)[-1]
+
+    def login(self, data, key):
+        """login function (compare passwords and mails)"""
+        email = data["email"]
+        users = self.get_({"email": email}, User)
+        if len(users) == 0:
+            return {"description": "Unknown email"}
+        user = users[0]
+        if user["password"] != data["password"]:
+            return {"description": "Incorrect password"}
+        token = encode({
+            "id": user["id"],
+            "name": user["full_name"],
+            "rol": user["rol"]
+        }, key, algorithm="HS256")
+        return {"description": "Login success", "token": token}

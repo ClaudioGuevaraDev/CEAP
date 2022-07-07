@@ -3,7 +3,7 @@ import json
 from sqlalchemy import select, insert, update, delete
 from modules.models import LabEquipment, Brand, Provider, Status
 from modules.models import LabReagent, MeasurementUnit, ReactiveType
-from modules.models import Request, Project, User
+from modules.models import Request, Project, User, Rol
 import pandas as pd
 
 class Crud:
@@ -51,6 +51,13 @@ class Crud:
                         Project.name.label("project_name"),
                         User.full_name.label("user_full_name"))
                 stmt = stmt.join(Project).join(User)
+            elif model == User:
+                #User model (with joins)
+                stmt = select(User.id.label("id"),
+                        User.full_name.label("full_name"),
+                        User.password.label("password"),
+                        Rol.name.label("rol"))
+                stmt = stmt.join(Rol)
             else:
                 #Other models
                 stmt = select(model)

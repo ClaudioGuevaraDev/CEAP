@@ -15,6 +15,7 @@ from modules.routes.provider import provider_blueprint
 from modules.routes.status import status_blueprint
 from modules.routes.request_equipment import request_equipment_blueprint
 from modules.routes.maintenance import maintenance_blueprint
+from modules.routes.login import login_blueprint
 
 api_blueprint = Blueprint('api', __name__)
 
@@ -33,3 +34,4 @@ api_blueprint.register_blueprint(provider_blueprint)
 api_blueprint.register_blueprint(status_blueprint)
 api_blueprint.register_blueprint(request_equipment_blueprint)
 api_blueprint.register_blueprint(maintenance_blueprint)
+api_blueprint.register_blueprint(login_blueprint)
