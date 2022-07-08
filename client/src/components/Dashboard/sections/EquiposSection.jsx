@@ -212,7 +212,6 @@ export default function EquiposSection() {
         setValueProveedor(proveedores[0].id);
         setValueStatus(status[0].id);
       } catch (error) {
-        console.log(error);
         toast.error("Error al crear el equipo.");
         setEquipmentName("");
         setSerial("");

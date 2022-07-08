@@ -11,14 +11,16 @@ import {
   Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Zoro from "../../assets/zoro.jpg";
+import DefaultProfile from '../../assets/default-profile.png'
 import { useState } from "react";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from 'react-router-dom'
+import useGetInfoUser from "../../hooks/auth/useGetInfoUser";
 
 export default function NavbarComponent({ open, handleDrawerOpen }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate()
+  const { userInfo } = useGetInfoUser()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,6 +31,7 @@ export default function NavbarComponent({ open, handleDrawerOpen }) {
   };
 
   const logout = () => {
+    localStorage.removeItem("token")
     navigate("/")
   }
 
@@ -54,7 +57,7 @@ export default function NavbarComponent({ open, handleDrawerOpen }) {
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleClick} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src={Zoro} />
+              <Avatar alt="Remy Sharp" src={DefaultProfile} />
             </IconButton>
             <Menu
               sx={{ mt: "45px" }}
@@ -73,7 +76,7 @@ export default function NavbarComponent({ open, handleDrawerOpen }) {
               onClose={handleClose}
             >
               <MenuItem>
-                <Typography>Claudio Guevara</Typography>
+                <Typography>{userInfo.name}</Typography>
               </MenuItem>
               <Divider />
               <MenuItem onClick={logout}>

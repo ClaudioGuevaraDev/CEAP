@@ -42,7 +42,7 @@ export default function AuthScreen() {
         localStorage.setItem("token", token);
         navigate("/dashboard");
       } else {
-        toast.error(description)
+        toast.error(description);
       }
     } catch (error) {
       toast.error("Error al iniciar sesión.");

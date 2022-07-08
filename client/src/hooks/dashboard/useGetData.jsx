@@ -17,8 +17,6 @@ export default function useGetData({ api, errorMessage, handleUpdate }) {
         post
       );
 
-      console.log(data.results)
-
       const new_data = data.results.map((d) => {
         return {
           ...d,
