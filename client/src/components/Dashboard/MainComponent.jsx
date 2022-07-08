@@ -11,11 +11,13 @@ import TipoReactivoSection from "./sections/TipoReactivoSection";
 import ReactivosSection from "./sections/ReactivosSection";
 import UnidadMedidaSection from "./sections/UnidadMedidaSection";
 import EquiposSection from "./sections/EquiposSection";
+import RequestSection from "./sections/RequestSection";
 
 export default function MainComponent({ open, section }) {
   return (
     <Main open={open}>
       <DrawerHeader />
+      {section === "solicitud" && <RequestSection/>}
       {section === "tipo_usuario" && <TipoUsuarioSection />}
       {section === "marca" && <MarcaSection/>}
       {section === "proyecto" && <ProyectoSection/>}

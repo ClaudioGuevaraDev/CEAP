@@ -11,6 +11,7 @@ import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import BuildIcon from "@mui/icons-material/Build";
 import ScienceIcon from "@mui/icons-material/Science";
 import BiotechIcon from '@mui/icons-material/Biotech';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useState } from "react";
 
 export default function SidebarComponent({ handleSection }) {
@@ -18,6 +19,12 @@ export default function SidebarComponent({ handleSection }) {
 
   return (
     <List>
+      <ListItemButton onClick={() => handleSection("solicitud")}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Solicitud" />
+      </ListItemButton>
       <ListItemButton onClick={() => handleSection("equipos")}>
         <ListItemIcon>
           <BiotechIcon />

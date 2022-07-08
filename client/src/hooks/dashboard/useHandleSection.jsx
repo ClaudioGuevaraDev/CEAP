@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useHandleSection() {
-  const [section, setSection] = useState("equipos");
+  const [section, setSection] = useState("solicitud");
 
   const handleSection = (section) => {
     setSection(section);
