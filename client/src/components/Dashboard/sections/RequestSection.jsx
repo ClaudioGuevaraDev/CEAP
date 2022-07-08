@@ -20,6 +20,27 @@ import DatePickerComponent from "../../form/DatePickerComponent";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useGetRequest from "../../../hooks/request/useGetRequest";
+import DataTable from "../../DataTable";
+
+const columns = [
+  {
+    name: "user_full_name",
+    label: "Investigador",
+  },
+  {
+    name: "request_date",
+    label: "Fecha del pedido",
+  },
+  {
+    name: "use_date",
+    label: "Fecha solicitada",
+  },
+  {
+    name: "project_name",
+    label: "Proyecto",
+  },
+];
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -36,7 +57,8 @@ export default function RequestSection() {
   const { projects, projectValue, setProjectValue } = useGetProjects();
   const { equipos, equipoValue, handleChangeEquipo } = useGetEquipos();
   const { reactivos, reactivoValue, handleChangeReactivo } = useGetReactivos();
-  const [useDate, setUseDate] = useState("2014-08-18")
+  const [useDate, setUseDate] = useState("2014-08-18");
+  const { requests, setRequests } = useGetRequest();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +78,7 @@ export default function RequestSection() {
         id: r,
       };
     });
-
+    
     const post = {
       id_user: id,
       id_project: projectValue,
@@ -65,18 +87,21 @@ export default function RequestSection() {
       equipments: equipments,
     };
 
-    console.log(post)
     try {
-      const { data } = await axios.post("http://localhost:5000/api/request/create_request/", post)
-      console.log(data)
+      const { data } = await axios.post(
+        "http://localhost:5000/api/request/create_request/",
+        post
+      );
+      const { results } = data;
+      setRequests(requests.concat(results));
     } catch (error) {
-      toast.error("Error al hacer la solicitud")
+      toast.error("Error al hacer la solicitud");
     }
   };
 
   return (
     <Grid container spacing={2}>
-      <SectionTitle title="Hacer solicitud" />
+      <SectionTitle title="Solicitudes" />
 
       <FormContainer>
         <form onSubmit={handleSubmit}>
@@ -147,11 +172,11 @@ export default function RequestSection() {
             value={projectValue}
           />
 
-            <DatePickerComponent
-             label="Fecha de Uso"
-             value={useDate}
-             setValue={setUseDate}
-             />
+          <DatePickerComponent
+            label="Fecha de Uso"
+            value={useDate}
+            setValue={setUseDate}
+          />
 
           <Button
             type="submit"
@@ -164,6 +189,14 @@ export default function RequestSection() {
           </Button>
         </form>
       </FormContainer>
+
+      <Grid item xl={9}>
+        <DataTable
+          title="Lista de Solicitudes"
+          data={requests}
+          columns={columns}
+        />
+      </Grid>
     </Grid>
   );
 }
