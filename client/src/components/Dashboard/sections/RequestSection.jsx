@@ -55,8 +55,10 @@ const MenuProps = {
 
 export default function RequestSection() {
   const { projects, projectValue, setProjectValue } = useGetProjects();
-  const { equipos, equipoValue, handleChangeEquipo } = useGetEquipos();
-  const { reactivos, reactivoValue, handleChangeReactivo } = useGetReactivos();
+  const { equipos, equipoValue, handleChangeEquipo, setEquipoValue } =
+    useGetEquipos();
+  const { reactivos, reactivoValue, handleChangeReactivo, setReactivoValue } =
+    useGetReactivos();
   const [useDate, setUseDate] = useState("2014-08-18");
   const { requests, setRequests } = useGetRequest();
 
@@ -76,9 +78,10 @@ export default function RequestSection() {
     const reagents = reactivoValue.map((r) => {
       return {
         id: r,
+        requested_amount: 1,
       };
     });
-    
+
     const post = {
       id_user: id,
       id_project: projectValue,
@@ -94,6 +97,10 @@ export default function RequestSection() {
       );
       const { results } = data;
       setRequests(requests.concat(results));
+      setProjectValue(projects[0].id);
+      setUseDate("2014-08-18");
+      setEquipoValue([]);
+      setReactivoValue([]);
     } catch (error) {
       toast.error("Error al hacer la solicitud");
     }

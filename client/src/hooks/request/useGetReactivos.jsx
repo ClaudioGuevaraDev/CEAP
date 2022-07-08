@@ -38,5 +38,6 @@ export default function useGetReactivos() {
     reactivos,
     reactivoValue,
     handleChangeReactivo,
+    setReactivoValue
   };
 }

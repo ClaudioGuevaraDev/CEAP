@@ -39,5 +39,6 @@ export default function useGetEquipos() {
     equipos,
     equipoValue,
     handleChangeEquipo,
+    setEquipoValue
   };
 }
