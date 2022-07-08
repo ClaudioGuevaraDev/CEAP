@@ -14,9 +14,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Zoro from "../../assets/zoro.jpg";
 import { useState } from "react";
 import Logout from "@mui/icons-material/Logout";
+import { useNavigate } from 'react-router-dom'
 
 export default function NavbarComponent({ open, handleDrawerOpen }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +27,10 @@ export default function NavbarComponent({ open, handleDrawerOpen }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logout = () => {
+    navigate("/")
+  }
 
   return (
     <>
@@ -70,7 +76,7 @@ export default function NavbarComponent({ open, handleDrawerOpen }) {
                 <Typography>Claudio Guevara</Typography>
               </MenuItem>
               <Divider />
-              <MenuItem>
+              <MenuItem onClick={logout}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>

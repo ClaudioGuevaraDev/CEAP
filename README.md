@@ -22,5 +22,3 @@ Tareas pendientes:
   -  Generar procedimiento de toma de solicitudes.
 
   -  Separación administrador/cliente.
-
-  -  Creación de nuevos usuarios.

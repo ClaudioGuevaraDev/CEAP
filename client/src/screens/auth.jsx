@@ -10,10 +10,44 @@ import {
 import useAuthSection from "../hooks/auth/useAuthSection";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function AuthScreen() {
   const { authSection, handleAuthSection } = useAuthSection();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const post = {
+        email: user.email,
+        password: user.password,
+      };
+      const { data } = await axios.post(
+        "http://127.0.0.1:5000/api/login/",
+        post
+      );
+
+      const { description, token } = data;
+
+      if (description === "Login success") {
+        localStorage.setItem("token", token);
+        navigate("/dashboard");
+      } else {
+        toast.error(description)
+      }
+    } catch (error) {
+      toast.error("Error al iniciar sesión.");
+    }
+  };
 
   return (
     <Grid
@@ -43,7 +77,7 @@ export default function AuthScreen() {
           <Typography component="h1" variant="h5" marginTop={2}>
             {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
           </Typography>
-          <Box component="form" sx={{ marginTop: 1 }}>
+          <form onSubmit={handleSubmit}>
             {authSection === "register" && (
               <TextField
                 required
@@ -54,20 +88,20 @@ export default function AuthScreen() {
                 autoFocus
                 placeholder="Bárbara Arévalo"
                 color="success"
+                type="button"
               />
             )}
             <TextField
-              required
               fullWidth
               label="Correo Electrónico"
-              type="email"
-              margin="normal"
               focused
+              margin="normal"
               placeholder="example@gmail.com"
               color="success"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
             <TextField
-              required
               fullWidth
               label="Contraseña"
               type="password"
@@ -75,6 +109,8 @@ export default function AuthScreen() {
               placeholder="********"
               focused
               color="success"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
             {authSection === "register" && (
               <TextField
@@ -88,7 +124,6 @@ export default function AuthScreen() {
                 color="success"
               />
             )}
-
             <Typography
               textAlign="center"
               margin="normal"
@@ -110,18 +145,17 @@ export default function AuthScreen() {
               )}
             </Typography>
 
-            <Link to="/dashboard">
-              <Button
-                fullWidth
-                variant="contained"
-                size="large"
-                sx={{ mt: 2 }}
-                color="success"
-              >
-                {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
-              </Button>
-            </Link>
-          </Box>
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              sx={{ mt: 2 }}
+              color="success"
+              type="submit"
+            >
+              {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
+            </Button>
+          </form>
         </Paper>
       </Grid>
     </Grid>
