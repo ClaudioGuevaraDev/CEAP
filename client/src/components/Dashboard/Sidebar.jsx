@@ -10,21 +10,17 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import BuildIcon from "@mui/icons-material/Build";
 import ScienceIcon from "@mui/icons-material/Science";
-import BiotechIcon from '@mui/icons-material/Biotech';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import BiotechIcon from "@mui/icons-material/Biotech";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import { useState } from "react";
+import useGetInfoUser from "../../hooks/auth/useGetInfoUser";
 
 export default function SidebarComponent({ handleSection }) {
   const [openConfiguration, setOpenConfiguration] = useState(false);
+  const { userInfo } = useGetInfoUser();
 
   return (
     <List>
-      <ListItemButton onClick={() => handleSection("solicitud")}>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Solicitud" />
-      </ListItemButton>
       <ListItemButton onClick={() => handleSection("equipos")}>
         <ListItemIcon>
           <BiotechIcon />
@@ -37,77 +33,92 @@ export default function SidebarComponent({ handleSection }) {
         </ListItemIcon>
         <ListItemText primary="Reactivos" />
       </ListItemButton>
-      <ListItemButton onClick={() => setOpenConfiguration(!openConfiguration)}>
+      <ListItemButton onClick={() => handleSection("solicitud")}>
         <ListItemIcon>
-          <BuildIcon />
+          <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Configuraciones" />
-        {openConfiguration ? <ExpandLess /> : <ExpandMore />}
+        <ListItemText primary="Solicitud" />
       </ListItemButton>
-      <Collapse in={openConfiguration} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+      {userInfo.rol === "administrador" && (
+        <>
           <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("tipo_usuario")}
+            onClick={() => setOpenConfiguration(!openConfiguration)}
           >
             <ListItemIcon>
-              <LabelImportantIcon />
+              <BuildIcon />
             </ListItemIcon>
-            <ListItemText primary="Tipos de Usuario" />
+            <ListItemText primary="Configuraciones" />
+            {openConfiguration ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} onClick={() => handleSection("marca")}>
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Marcas" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("proyecto")}
-          >
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Proyectos" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("proveedor")}
-          >
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Proveedores" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("estado")}
-          >
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Estados" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("tipo_reactivo")}
-          >
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Tipo de Reactivos" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => handleSection("unidad_medida")}
-          >
-            <ListItemIcon>
-              <LabelImportantIcon />
-            </ListItemIcon>
-            <ListItemText primary="Unidades de Medida" />
-          </ListItemButton>
-        </List>
-      </Collapse>
+          <Collapse in={openConfiguration} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("tipo_usuario")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Tipos de Usuario" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("marca")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Marcas" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("proyecto")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Proyectos" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("proveedor")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Proveedores" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("estado")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Estados" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("tipo_reactivo")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Tipo de Reactivos" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => handleSection("unidad_medida")}
+              >
+                <ListItemIcon>
+                  <LabelImportantIcon />
+                </ListItemIcon>
+                <ListItemText primary="Unidades de Medida" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </>
+      )}
     </List>
   );
 }

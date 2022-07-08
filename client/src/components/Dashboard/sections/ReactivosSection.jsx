@@ -1,5 +1,5 @@
 import { Button, Grid, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormContainer from "../../form/form_container";
 import TextFieldComponent from "../../form/text_field_component";
 import SectionTitle from "../../section_title";
@@ -12,6 +12,8 @@ import DataTable from "../../DataTable";
 import toast from "react-hot-toast";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import jwt_decode from "jwt-decode";
+import useGetInfoUser from "../../../hooks/auth/useGetInfoUser";
 
 const columns = [
   {
@@ -60,6 +62,85 @@ export default function ReactivosSection() {
   const [buyAlarm, setBuyAlarm] = useState("50");
   const [update, setUpdate] = useState(false);
   const [updatedID, setUpdatedID] = useState(0);
+  const [columns, setColumns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { userInfo } = useGetInfoUser();
+
+  useEffect(() => {
+    setLoading(false);
+    const token = localStorage.getItem("token");
+    const decoded = jwt_decode(token);
+    const { rol } = decoded;
+
+    if (rol === "administrador") {
+      setColumns([
+        {
+          name: "name",
+          label: "Nombre",
+        },
+        {
+          name: "cas",
+          label: "CAS",
+        },
+        {
+          name: "actual_amount",
+          label: "Cantidad Actual",
+        },
+        {
+          name: "measurement_unit_name",
+          label: "Unidad de Medida",
+        },
+        {
+          name: "reactive_type_name",
+          label: "Tipo de Reactivo",
+        },
+        {
+          name: "expiration_date",
+          label: "Fecha de Expiración",
+        },
+        {
+          name: "buy_alarm",
+          label: "Cantidad Mínima",
+        },
+        {
+          name: "options",
+          label: "Opciones",
+        },
+      ]);
+    } else {
+      setColumns([
+        {
+          name: "name",
+          label: "Nombre",
+        },
+        {
+          name: "cas",
+          label: "CAS",
+        },
+        {
+          name: "actual_amount",
+          label: "Cantidad Actual",
+        },
+        {
+          name: "measurement_unit_name",
+          label: "Unidad de Medida",
+        },
+        {
+          name: "reactive_type_name",
+          label: "Tipo de Reactivo",
+        },
+        {
+          name: "expiration_date",
+          label: "Fecha de Expiración",
+        },
+        {
+          name: "buy_alarm",
+          label: "Cantidad Mínima",
+        },
+      ]);
+    }
+    setLoading(false);
+  }, []);
 
   useGetTableBase({
     api: "measurement_unit",
@@ -231,72 +312,88 @@ export default function ReactivosSection() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <SectionTitle title="Reactivos" />
+    <>
+      {loading === false && (
+        <Grid container spacing={2}>
+          <SectionTitle title="Reactivos" />
 
-      <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <TextFieldComponent
-            label="Nombre"
-            autoFocus={true}
-            placeholder="Nombre del Reactivo"
-            value={reactiveName}
-            setValue={setReactiveName}
-          />
-          <TextFieldComponent
-            label="CAS"
-            autoFocus={false}
-            placeholder="CAS"
-            value={cas}
-            setValue={setCas}
-          />
-          <DatePickerComponent
-            label="Fecha de Expiración"
-            value={expirationoDate}
-            setValue={setExpirationDate}
-          />
-          <Grid container spacing={2}>
-            <Grid item xl={6}>
-              <TextFieldComponent
-                label="Cantidad"
-                value={actualAmount}
-                setValue={setActualAmount}
-              />
-            </Grid>
-            <Grid item xl={6}>
-              <SelectComponent
-                input_label_id="unidad-medida"
-                input_label_title="Unidad de Medida"
-                label="Unidad de Medida"
-                options={unidadesMedida}
-                value={valueUnidadMedida}
-                setValue={setValueUnidadMedida}
-              />
-            </Grid>
+          {userInfo.rol === "administrador" && (
+            <FormContainer>
+              <form onSubmit={handleSubmit}>
+                <TextFieldComponent
+                  label="Nombre"
+                  autoFocus={true}
+                  placeholder="Nombre del Reactivo"
+                  value={reactiveName}
+                  setValue={setReactiveName}
+                />
+                <TextFieldComponent
+                  label="CAS"
+                  autoFocus={false}
+                  placeholder="CAS"
+                  value={cas}
+                  setValue={setCas}
+                />
+                <DatePickerComponent
+                  label="Fecha de Expiración"
+                  value={expirationoDate}
+                  setValue={setExpirationDate}
+                />
+                <Grid container spacing={2}>
+                  <Grid item xl={6}>
+                    <TextFieldComponent
+                      label="Cantidad"
+                      value={actualAmount}
+                      setValue={setActualAmount}
+                    />
+                  </Grid>
+                  <Grid item xl={6}>
+                    <SelectComponent
+                      input_label_id="unidad-medida"
+                      input_label_title="Unidad de Medida"
+                      label="Unidad de Medida"
+                      value={valueUnidadMedida}
+                      options={unidadesMedida}
+                      setValue={setValueUnidadMedida}
+                    />
+                  </Grid>
+                </Grid>
+                <SelectComponent
+                  input_label_id="tipo-reactivo"
+                  input_label_title="Tipo de Reactivo"
+                  label="Tipo de Reactivo"
+                  options={tiposReactivos}
+                  value={valueTipoReactivo}
+                  setValue={setValueTipoReactivo}
+                />
+                <TextFieldComponent
+                  autoFocus={false}
+                  label="Valor Crítico"
+                  placeholder="Valor crítico"
+                  setValue={setBuyAlarm}
+                  value={buyAlarm}
+                />
+                <Button
+                  variant="contained"
+                  color="success"
+                  fullWidth
+                  type="submit"
+                >
+                  {update ? "Editar" : "Crear"}
+                </Button>
+              </form>
+            </FormContainer>
+          )}
+
+          <Grid item xl={8}>
+            <DataTable
+              title="Lista de Reactivos"
+              columns={columns}
+              data={values}
+            />
           </Grid>
-          <SelectComponent
-            input_label_id="tipo-reactivo"
-            input_label_title="Tipo de Reactivo"
-            label="Tipo de Reactivo"
-            options={tiposReactivos}
-            value={valueTipoReactivo}
-            setValue={setValueTipoReactivo}
-          />
-          <TextFieldComponent
-            autoFocus={false}
-            label="Valor Crítico"
-            placeholder="Valor crítico"
-            setValue={setBuyAlarm}
-            value={buyAlarm}
-          />
-          <Button variant="contained" color="success" fullWidth type="submit">
-            {update ? "Editar" : "Crear"}
-          </Button>
-        </form>
-      </FormContainer>
-      <Grid item xl={8}>
-        <DataTable title="Lista de Reactivos" columns={columns} data={values} />
-      </Grid>
-    </Grid>
+        </Grid>
+      )}
+    </>
   );
 }

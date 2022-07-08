@@ -8,6 +8,7 @@ import Background from "./assets/fondo.jpg";
 import AuthScreen from "./screens/auth";
 import DashboardScreen from "./screens/dashboard";
 import { Box, CssBaseline } from "@mui/material";
+import { useEffect } from "react";
 
 export default function App() {
   const theme = createTheme();

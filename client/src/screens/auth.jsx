@@ -11,7 +11,7 @@ import useAuthSection from "../hooks/auth/useAuthSection";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -22,6 +22,10 @@ export default function AuthScreen() {
     password: "",
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.removeItem("token")
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

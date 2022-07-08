@@ -1,6 +1,6 @@
 import { Button, Grid, Stack } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useGetTableBase from "../../../hooks/tablas_base/useGetTableBase";
 import DatePickerComponent from "../../form/DatePickerComponent";
@@ -12,37 +12,8 @@ import DataTable from "../../DataTable";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useGetData from "../../../hooks/dashboard/useGetData";
-
-const columns = [
-  {
-    name: "name",
-    label: "Nombre",
-  },
-  {
-    name: "serial",
-    label: "Serial",
-  },
-  {
-    name: "brand_name",
-    label: "Marca",
-  },
-  {
-    name: "provider_name",
-    label: "Proveedor",
-  },
-  {
-    name: "next_maintanance",
-    label: "Fecha de Mantención",
-  },
-  {
-    name: "status_name",
-    label: "Estado",
-  },
-  {
-    name: "options",
-    label: "Opciones",
-  },
-];
+import useGetInfoUser from "../../../hooks/auth/useGetInfoUser";
+import jwt_decode from "jwt-decode";
 
 export default function EquiposSection() {
   const [equipmentName, setEquipmentName] = useState("");
@@ -56,6 +27,76 @@ export default function EquiposSection() {
   const [valueStatus, setValueStatus] = useState("");
   const [update, setUpdate] = useState(false);
   const [updatedID, setUpdatedID] = useState("");
+  const [columns, setColumns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { userInfo } = useGetInfoUser();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const decoded = jwt_decode(token);
+    const { rol } = decoded;
+
+    if (rol === "administrador") {
+      setColumns([
+        {
+          name: "name",
+          label: "Nombre",
+        },
+        {
+          name: "serial",
+          label: "Serial",
+        },
+        {
+          name: "brand_name",
+          label: "Marca",
+        },
+        {
+          name: "provider_name",
+          label: "Proveedor",
+        },
+        {
+          name: "next_maintanance",
+          label: "Fecha de Mantención",
+        },
+        {
+          name: "status_name",
+          label: "Estado",
+        },
+        {
+          name: "options",
+          label: "Opciones",
+        },
+      ]);
+    } else {
+      setColumns([
+        {
+          name: "name",
+          label: "Nombre",
+        },
+        {
+          name: "serial",
+          label: "Serial",
+        },
+        {
+          name: "brand_name",
+          label: "Marca",
+        },
+        {
+          name: "provider_name",
+          label: "Proveedor",
+        },
+        {
+          name: "next_maintanance",
+          label: "Fecha de Mantención",
+        },
+        {
+          name: "status_name",
+          label: "Estado",
+        },
+      ]);
+    }
+    setLoading(false);
+  }, []);
 
   useGetTableBase({
     api: "brand",
@@ -92,7 +133,7 @@ export default function EquiposSection() {
   const { values, setValues, handleDelete } = useGetData({
     api: "lab_equipment",
     errorMessage: "equipo",
-    handleUpdate
+    handleUpdate,
   });
 
   const handleSubmit = async (e) => {
@@ -223,73 +264,79 @@ export default function EquiposSection() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <SectionTitle title="Equipos de Laboratorio" />
+    <>
+      {loading === false && (
+        <Grid container spacing={2}>
+          <SectionTitle title="Equipos de Laboratorio" />
 
-      <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <TextFieldComponent
-            autoFocus={true}
-            label="Nombre"
-            placeholder="Nombre"
-            value={equipmentName}
-            setValue={setEquipmentName}
-          />
-          <TextFieldComponent
-            autoFocus={false}
-            label="Serial"
-            placeholder="Serial"
-            value={serial}
-            setValue={setSerial}
-          />
-          <SelectComponent
-            input_label_id="marca"
-            input_label_title="Marca"
-            label="Marca"
-            options={marcas}
-            setValue={setValueMarca}
-            value={valueMarca}
-          />
-          <SelectComponent
-            input_label_id="proveedor"
-            input_label_title="Proveedor"
-            label="Proveedor"
-            options={proveedores}
-            setValue={setValueProveedor}
-            value={valueProveedor}
-          />
-          <DatePickerComponent
-            label="Siguiente Mantención"
-            setValue={setNextMaintanance}
-            value={nextMaintanance}
-          />
-          <SelectComponent
-            input_label_id="status"
-            input_label_title="Estado"
-            label="Estado"
-            options={status}
-            setValue={setValueStatus}
-            value={valueStatus}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="success"
-            fullWidth
-            sx={{ marginTop: 2 }}
-          >
-            {update ? "Editar" : "Crear"}
-          </Button>
-        </form>
-      </FormContainer>
+          {userInfo.rol === "administrador" && (
+            <FormContainer>
+              <form onSubmit={handleSubmit}>
+                <TextFieldComponent
+                  autoFocus={true}
+                  label="Nombre"
+                  placeholder="Nombre"
+                  value={equipmentName}
+                  setValue={setEquipmentName}
+                />
+                <TextFieldComponent
+                  autoFocus={false}
+                  label="Serial"
+                  placeholder="Serial"
+                  value={serial}
+                  setValue={setSerial}
+                />
+                <SelectComponent
+                  input_label_id="marca"
+                  input_label_title="Marca"
+                  label="Marca"
+                  options={marcas}
+                  setValue={setValueMarca}
+                  value={valueMarca}
+                />
+                <SelectComponent
+                  input_label_id="proveedor"
+                  input_label_title="Proveedor"
+                  label="Proveedor"
+                  options={proveedores}
+                  setValue={setValueProveedor}
+                  value={valueProveedor}
+                />
+                <DatePickerComponent
+                  label="Siguiente Mantención"
+                  setValue={setNextMaintanance}
+                  value={nextMaintanance}
+                />
+                <SelectComponent
+                  input_label_id="status"
+                  input_label_title="Estado"
+                  label="Estado"
+                  options={status}
+                  setValue={setValueStatus}
+                  value={valueStatus}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  fullWidth
+                  sx={{ marginTop: 2 }}
+                >
+                  {update ? "Editar" : "Crear"}
+                </Button>
+              </form>
+            </FormContainer>
+          )}
 
-      <Grid item xl={9}>
-        <DataTable
-          title="Lista de Equipos"
-          columns={columns}
-          data={values}
-        />
-      </Grid>
-    </Grid>
+          <Grid item xl={9}>
+            <DataTable
+              title="Lista de Equipos"
+              columns={columns}
+              data={values}
+            />
+          </Grid>
+        </Grid>
+      )}
+    </>
   );
 }
