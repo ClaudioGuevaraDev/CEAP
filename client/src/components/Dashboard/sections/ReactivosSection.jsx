@@ -53,7 +53,7 @@ const columns = [
 export default function ReactivosSection() {
   const [reactiveName, setReactiveName] = useState("");
   const [cas, setCas] = useState("");
-  const [expirationoDate, setExpirationDate] = useState("2014-08-18");
+  const [expirationoDate, setExpirationDate] = useState("2022-07-12");
   const [actualAmount, setActualAmount] = useState("0");
   const [unidadesMedida, setUnidadesMedida] = useState([]);
   const [valueUnidadMedida, setValueUnidadMedida] = useState("");
@@ -236,7 +236,7 @@ export default function ReactivosSection() {
         setActualAmount("0");
         setValueUnidadMedida(unidadesMedida[0].id);
         setValueTipoReactivo(tiposReactivos[0].id);
-        setExpirationDate("2014-08-18");
+        setExpirationDate("2022-07-12");
         setBuyAlarm("50");
       } catch (error) {
         toast.error("Error al actualizar el reactivo.");
@@ -247,7 +247,7 @@ export default function ReactivosSection() {
         setActualAmount("0");
         setValueUnidadMedida(unidadesMedida[0].id);
         setValueTipoReactivo(tiposReactivos[0].id);
-        setExpirationDate("2014-08-18");
+        setExpirationDate("2022-07-12");
         setBuyAlarm("50");
       }
     } else {
@@ -296,7 +296,7 @@ export default function ReactivosSection() {
         setActualAmount("0");
         setValueUnidadMedida(unidadesMedida[0].id);
         setValueTipoReactivo(tiposReactivos[0].id);
-        setExpirationDate("2014-08-18");
+        setExpirationDate("2022-07-12");
         setBuyAlarm("50");
       } catch (error) {
         toast.error("Error al crear el reactivo.");
@@ -305,7 +305,7 @@ export default function ReactivosSection() {
         setActualAmount("0");
         setValueUnidadMedida(unidadesMedida[0].id);
         setValueTipoReactivo(tiposReactivos[0].id);
-        setExpirationDate("2014-08-18");
+        setExpirationDate("2022-07-12");
         setBuyAlarm("50");
       }
     }

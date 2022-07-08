@@ -22,7 +22,7 @@ export default function EquiposSection() {
   const [valueMarca, setValueMarca] = useState("");
   const [proveedores, setProveedores] = useState([]);
   const [valueProveedor, setValueProveedor] = useState("");
-  const [nextMaintanance, setNextMaintanance] = useState("2014-08-18");
+  const [nextMaintanance, setNextMaintanance] = useState("2022-07-12");
   const [status, setStatus] = useState([]);
   const [valueStatus, setValueStatus] = useState("");
   const [update, setUpdate] = useState(false);

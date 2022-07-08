@@ -59,7 +59,7 @@ export default function RequestSection() {
     useGetEquipos();
   const { reactivos, reactivoValue, handleChangeReactivo, setReactivoValue } =
     useGetReactivos();
-  const [useDate, setUseDate] = useState("2014-08-18");
+  const [useDate, setUseDate] = useState("2022-07-12");
   const { requests, setRequests } = useGetRequest();
 
   const handleSubmit = async (e) => {
@@ -98,7 +98,7 @@ export default function RequestSection() {
       const { results } = data;
       setRequests(requests.concat(results));
       setProjectValue(projects[0].id);
-      setUseDate("2014-08-18");
+      setUseDate("2022-07-12");
       setEquipoValue([]);
       setReactivoValue([]);
     } catch (error) {
