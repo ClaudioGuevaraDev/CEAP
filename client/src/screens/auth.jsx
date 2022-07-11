@@ -78,7 +78,7 @@ export default function AuthScreen() {
               <PersonAddAltIcon />
             )}
           </Avatar>
-          <Typography component="h1" variant="h5" marginTop={2}>
+          <Typography id="title" component="h1" variant="h5" marginTop={2}>
             {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
           </Typography>
           <form onSubmit={handleSubmit}>
@@ -104,6 +104,7 @@ export default function AuthScreen() {
               color="success"
               value={user.email}
               onChange={(e) => setUser({ ...user, email: e.target.value })}
+              id="email-input"
             />
             <TextField
               fullWidth
@@ -115,6 +116,7 @@ export default function AuthScreen() {
               color="success"
               value={user.password}
               onChange={(e) => setUser({ ...user, password: e.target.value })}
+              id="password-input"
             />
             {authSection === "register" && (
               <TextField
@@ -140,6 +142,7 @@ export default function AuthScreen() {
                 },
               }}
               onClick={handleAuthSection}
+              id="section-auth"
             >
               {authSection === "login" && (
                 <span>¿No tienes una cuenta registrada?</span>
@@ -156,6 +159,7 @@ export default function AuthScreen() {
               sx={{ mt: 2 }}
               color="success"
               type="submit"
+              id="button-submit"
             >
               {authSection === "login" ? "Iniciar Sesión" : "Registrarse"}
             </Button>
