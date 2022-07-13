@@ -23,7 +23,7 @@ class Database(Crud):
 
     def create_request(self, data):
         """Creates a new request"""
-        res = self.insert_({"request_date": datetime.now().strftime("%d/%m/%Y"),
+        res = self.insert_({"request_date": datetime.now().strftime("%m-%d-%Y"),
             "id_user": data["id_user"],
             "id_project": data["id_project"],
             "use_date": data["use_date"]}, Request)

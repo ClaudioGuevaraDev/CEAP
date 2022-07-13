@@ -77,7 +77,6 @@ class Crud:
         """Insert row to Table"""
         try:
             stmt = (insert(model).values(data))
-            print(data)
             self.session.execute(stmt)
             self.session.commit()
             return self.get_(data, model)[-1]
